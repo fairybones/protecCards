@@ -1,7 +1,22 @@
+import Head from "next/head";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
 import '@styles/globals.css'
 
-function Application({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+export default function App({ Component, pageProps }) {
+  return (
+    <div>
+      <Head>
+        <title>Protec Accessories</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-export default Application
+      <Header />
+      <main>
+        <Component {...pageProps} />
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

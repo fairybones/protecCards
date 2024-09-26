@@ -56,9 +56,9 @@ const navigation = {
           name: "Trading Cards",
           items: [
             // ******************************
-            { name: "Card Sleeves", href: "#" },
-            { name: "Card Slabs", href: "#" },
-            { name: "Browse All", href: "#" },
+            // { name: "Card Sleeves", href: "#" },
+            // { name: "Card Slabs", href: "#" },
+            { name: "Browse All", href: "/trading" },
           ],
         },
         {
@@ -82,9 +82,7 @@ const navigation = {
     },
   ],
   forms: [
-    // ******************************
     { name: "Warranty", href: "/warranty" },
-    // ******************************
     { name: "Wholesale", href: "/wholesale" },
   ],
 };

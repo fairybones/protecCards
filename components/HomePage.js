@@ -7,8 +7,7 @@ const categories = [
     description: "Pokemon, Magic, Sports, & More!",
     imageSrc: "https://placehold.co/400",
     imageAlt: "slabs and sleeves for protecting trading cards",
-    // ********************************************************
-    href: "#",
+    href: "/trading",
   },
   {
     name: "Grading",

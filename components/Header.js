@@ -58,7 +58,6 @@ const navigation = {
             // ******************************
             { name: "Card Sleeves", href: "#" },
             { name: "Card Slabs", href: "#" },
-            { name: "Card Stands", href: "#" },
             { name: "Browse All", href: "#" },
           ],
         },
@@ -75,8 +74,6 @@ const navigation = {
           name: "Display Cases",
           items: [
             // ******************************
-            { name: "Action Figures", href: "#" },
-            { name: "Comic Books", href: "#" },
             { name: "Card Stands", href: "#" },
             { name: "Browse All", href: "#" },
           ],
@@ -86,9 +83,9 @@ const navigation = {
   ],
   forms: [
     // ******************************
-    { name: "Warranty", href: "#" },
+    { name: "Warranty", href: "/warranty" },
     // ******************************
-    { name: "Wholesale", href: "#" },
+    { name: "Wholesale", href: "/wholesale" },
   ],
 };
 
@@ -255,16 +252,25 @@ export default function Header() {
                             <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                               <div className="col-start-2 grid grid-cols-2 gap-x-8">
                                 {category.featured.map((item) => (
-                                  <div key={item.name} className="group relative text-base sm:text-sm">
+                                  <div
+                                    key={item.name}
+                                    className="group relative text-base sm:text-sm"
+                                  >
                                     <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                    <img
+                                      <img
                                         alt={item.imageAlt}
                                         src={item.imageSrc}
                                         className="object-cover object-center"
                                       />
                                     </div>
-                                    <a href={item.href} className="mt-6 block font-medium text-gray-900">
-                                      <span aria-hidden="true" className="absolute inset-0 z-10" />
+                                    <a
+                                      href={item.href}
+                                      className="mt-6 block font-medium text-gray-900"
+                                    >
+                                      <span
+                                        aria-hidden="true"
+                                        className="absolute inset-0 z-10"
+                                      />
                                       {item.name}
                                     </a>
                                     <p aria-hidden="true" className="mt-1">
@@ -276,7 +282,10 @@ export default function Header() {
                               <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                                 {category.sections.map((section) => (
                                   <div key={section.name}>
-                                    <p id={`${section.name}-heading`} className="font-medium text-gray-900">
+                                    <p
+                                      id={`${section.name}-heading`}
+                                      className="font-medium text-gray-900"
+                                    >
                                       {section.name}
                                     </p>
                                     <ul
@@ -286,7 +295,10 @@ export default function Header() {
                                     >
                                       {section.items.map((item) => (
                                         <li key={item.name} className="flex">
-                                          <a href={item.href} className="hover:text-gray-800">
+                                          <a
+                                            href={item.href}
+                                            className="hover:text-gray-800"
+                                          >
                                             {item.name}
                                           </a>
                                         </li>
@@ -304,12 +316,12 @@ export default function Header() {
 
                   {navigation.forms.map((form) => (
                     <a
-                    key={form.name}
-                    href={form.href}
-                    className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    {form.name}
-                  </a>
+                      key={form.name}
+                      href={form.href}
+                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
+                      {form.name}
+                    </a>
                   ))}
                 </div>
               </PopoverGroup>
@@ -320,10 +332,12 @@ export default function Header() {
                 {/* CART HREF */}
                 <a href="#" className="group -m-2 flex items-center p-2">
                   <ShoppingBagIcon
-                  aria-hidden="true"
-                  className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                    aria-hidden="true"
+                    className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                   />
-                  <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                  <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                    0
+                  </span>
                   <span className="sr-only">items in cart, view bag</span>
                 </a>
               </div>

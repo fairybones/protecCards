@@ -1,31 +1,25 @@
-import { useRouter } from "next/router";
-// import product data
+import ProductPreviewModal from "@components/ProductPreviewModal";
 
-const products = [
-    {
-      id: "1",
-      name: "Product 1",
-      imageSrc: "https://placehold.co/400",
-      imageAlt: "slabs for protecting trading cards",
-      description: "Product Description",
-      sizes: "1",
-      price: "$",
-      href: "/trading/1",
-    },
-];
+// Import the product data
 
-export default function ProductPreview() {
-    const router = useRouter();
-    const { id } = router.query;
+export default function ProductPreview({ product }) {
+    
 
-    // find the product based on the ID from URL
-    const product = products.find((p) => p.id === id);
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
-    if (!product) {
-        return <div>Redirect to error page</div>
-    }
-
-    return (
-        <div></div>
-    )
+  return (
+    <div className="bg-white">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h1 className="text-3xl font-bold">{product.name}</h1>
+        <img src={product.imageSrc} alt={product.imageAlt} className="mt-4" />
+        <p className="mt-2 text-lg">{product.description}</p>
+        <p className="mt-4 text-xl font-semibold">{product.price}</p>
+        <button className="mt-4 px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md">
+        Add to Cart
+      </button>
+      </div>
+    </div>
+  );
 }

@@ -1,5 +1,8 @@
 // https://tailwindui.com/components/ecommerce/components/product-lists
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
+// import product preview modal
 
 // TRADING CARDS
 const products = [
@@ -96,6 +99,18 @@ const products = [
 ];
 
 export default function TradingCards() {
+  const [selectedId, setSelectedId] = useState(null);
+  const router = useRouter();
+
+  // for opening product preview
+  const openPreview = (id) => {
+    setSelectedId(id);
+  };
+  // closing modal preview
+  const closePreview = () => {
+    setSelectedId(null);
+  };
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -105,17 +120,27 @@ export default function TradingCards() {
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
             <Link key={product.id} href={`/trading/${product.id}`}>
-                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                  <img
-                    alt={product.imageAlt}
-                    src={product.imageSrc}
-                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                  />
-                </div>
-                <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
+              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                <img
+                  alt={product.imageAlt}
+                  src={product.imageSrc}
+                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                />
+              </div>
+              <div className="flex justify-between">
+                <h3 className="mt-4 justify-start text-sm text-gray-700">
+                  {product.name}
+                </h3>
                 <p className="mt-1 text-lg font-medium text-gray-900">
                   {product.price}
                 </p>
+              </div>
+              <button
+                className="mt-2 px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+                onClick={() => openPreview(product.id)}
+              >
+                Add to Bag
+              </button>
             </Link>
           ))}
         </div>

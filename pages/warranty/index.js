@@ -163,7 +163,7 @@ export default function Warranty() {
                 </Label>
                 <Select className="mt-1 block" name="method">
                   <option>Replacement</option>
-                  <option>Return & Refund</option>
+                  <option>Refund</option>
                 </Select>
               </Field>
             </Fieldset>

@@ -116,7 +116,7 @@ export default function Wholesale() {
             </div>
             <Label className="text-sm leading-6 text-gray-600">
                 By checking this, you agree to our{' '}
-                <a href="#" className="font-semibold text-indigo-600">
+                <a href="/privacy" className="font-semibold text-indigo-600">
                     privacy&nbsp;policy
                 </a>
                 .

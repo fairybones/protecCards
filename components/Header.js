@@ -56,9 +56,7 @@ const navigation = {
           name: "Trading Cards",
           items: [
             // ******************************
-            // { name: "Card Sleeves", href: "#" },
-            // { name: "Card Slabs", href: "#" },
-            { name: "Browse All", href: "/trading" },
+            { name: "Shop All", href: "/trading" },
           ],
         },
         {
@@ -66,7 +64,7 @@ const navigation = {
           name: "Grading Accessories",
           items: [
             // ******************************
-            { name: "Graded Slabs", href: "#" },
+            { name: "Shop All", href: "#" },
           ],
         },
         {
@@ -74,9 +72,30 @@ const navigation = {
           name: "Display Cases",
           items: [
             // ******************************
-            { name: "Card Stands", href: "#" },
-            { name: "Browse All", href: "#" },
+            { name: "Shop All", href: "#" },
           ],
+        },
+      ],
+    },
+    {
+      id: "FAQ",
+      name: "FAQ",
+      sections: [
+        {
+          id: "warranty",
+          name: "Frequently Asked Questions",
+          href: "/warranty",
+        },
+        {
+          id: "wholesale",
+          name: "Wholesale",
+          href: "/wholesale",
+        },
+        {
+          id: "legal",
+          name: "Privacy Policy",
+          // **********************************
+          href: "#",
         },
       ],
     },

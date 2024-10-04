@@ -1,0 +1,15 @@
+export default function PrivacyPolicy() {
+    return (
+        <div>
+            <h1>Privacy Policy</h1>
+            <p>This Privacy Notice for Acroment LLC("we," "us, "our") describes how and why we might access, collect, store, use and/or share ("process") your personal information when you use our site.</p>
+            <h2>Questions or concerns?</h2>
+            <p>Please contact us at acromentllc@gmail.com!</p>
+            <h1>TABLE OF CONTENTS</h1>
+            <ul>
+                <li>What information do we collect?</li>
+                <li>How do we process personal information?</li>
+            </ul>
+        </div>
+    )
+}

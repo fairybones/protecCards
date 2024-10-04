@@ -34,8 +34,9 @@
 [data-custom-class="body_text"],
 [data-custom-class="body_text"] * {
   color: #595959 !important;
-  font-size: 14px !important;
+  font-size: 15px !important;
   font-family: Arial !important;
+  line-height: 1.5;
 }
 
 [data-custom-class="link"],

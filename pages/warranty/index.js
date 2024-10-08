@@ -61,13 +61,13 @@ const questions = [
   },
   {
     id: 5,
-    title: "What does the warranty cover?",
+    title: "What are you doing with my data?",
     description:
-      "Orders placed within x amount of time are eligible for replacement or refund. If product came damaged or otherwise inferior we want to hear from you!",
+      "We only use the data you provide with your consent to fulfill our Services. Read our full privacy policy here:",
     category: {
       title: "Damaged & Broken",
       // **********************************************
-      href: "#",
+      href: "/privacy",
     },
   },
   {

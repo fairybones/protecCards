@@ -94,8 +94,7 @@ const navigation = {
         {
           id: "legal",
           name: "Privacy Policy",
-          // **********************************
-          href: "#",
+          href: "/privacy",
         },
       ],
     },
@@ -151,7 +150,7 @@ export default function Header() {
                     className="space-y-10 px-4 pb-8 pt-10"
                   >
                     <div className="grid grid-cols-2 gap-x-4">
-                      {category.featured.map((item) => (
+                      {category.featured ??[].map((item) => (
                         <div key={item.name} className="group relative text-sm">
                           <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                             <img
@@ -189,7 +188,7 @@ export default function Header() {
                           aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
                           className="mt-6 flex flex-col space-y-6"
                         >
-                          {section.items.map((item) => (
+                          {section.items ??[].map((item) => (
                             <li key={item.name} className="flow-root">
                               <a
                                 href={item.href}
@@ -268,7 +267,7 @@ export default function Header() {
                           <div className="mx-auto max-w-7xl px-8">
                             <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                               <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                {category.featured.map((item) => (
+                                {category.featured ??[].map((item) => (
                                   <div
                                     key={item.name}
                                     className="group relative text-base sm:text-sm"
@@ -310,7 +309,7 @@ export default function Header() {
                                       aria-labelledby={`${section.name}-heading`}
                                       className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                     >
-                                      {section.items.map((item) => (
+                                      {section.items ??[].map((item) => (
                                         <li key={item.name} className="flex">
                                           <a
                                             href={item.href}

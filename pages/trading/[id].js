@@ -1,4 +1,5 @@
 import ProductPreviewModal from "@components/ProductPreviewModal";
+import Link from "next/link";
 
 // Import the product data
 

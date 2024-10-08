@@ -22,8 +22,7 @@ const questions = [
       "Yes, wholesale rates are offered at a minimum quantity of 1,000 units.",
     category: {
       title: "Wholesale",
-      // **********************************************
-      href: "#",
+      href: "/wholesale",
     },
   },
   {
@@ -33,8 +32,7 @@ const questions = [
       "Most of our cases are secured by a magnetic closure. Please check the product's description for exact specifications.",
     category: {
       title: "Damaged & Broken",
-      // **********************************************
-      href: "#",
+      href: "/warranty",
     },
   },
   {
@@ -44,8 +42,7 @@ const questions = [
       "By weight and distance. Orders are shipped same day, or by next business day for in-stock items.",
     category: {
       title: "Order Details",
-      // **********************************************
-      href: "#",
+      href: "/warranty",
     },
   },
   {
@@ -55,19 +52,17 @@ const questions = [
       "Yes! We require a resellers certification for wholesale accounts. We'll help you!",
     category: {
       title: "Wholesale",
-      // **********************************************
-      href: "#",
+      href: "/wholesale",
     },
   },
   {
     id: 5,
-    title: "What does the warranty cover?",
+    title: "What happens with my personal information?",
     description:
-      "Orders placed within x amount of time are eligible for replacement or refund. If product came damaged or otherwise inferior we want to hear from you!",
+      "Our use of information received is outlined in our privacy policy. We do not sell or use personal information without consent.",
     category: {
-      title: "Damaged & Broken",
-      // **********************************************
-      href: "#",
+      title: "Data Security",
+      href: "/privacy",
     },
   },
   {
@@ -77,8 +72,7 @@ const questions = [
       "We offer a warranty program to ensure the longevity of our products. Click the button below to submit a request form!",
     category: {
       title: "Order Details",
-      // **********************************************
-      href: "#",
+      href: "/warranty",
     },
   },
 ];

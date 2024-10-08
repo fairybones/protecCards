@@ -1,74 +1,57 @@
-import styles from "@styles/PrivacyPolicy.css";
-
 export default function PrivacyPolicy() {
   return (
-    <div style={styles} data-custom-class="body">
+    <div className="pl-5">
       <div>
-        <strong>
-          <span data-custom-class="title">PRIVACY POLICY</span>
-        </strong>
-        <br></br>
-        <div>
-          <strong>
-            <span data-custom-class="subtitle">
-              Last updated October 07, 2024
-            </span>
-          </strong>
-        </div>
-        <br></br>
+        <h1 className="text-2xl font-bold mb-6">PRIVACY POLICY</h1>
+        <h2 className="text-lg font-semibold mt-6 mb-4">
+          Last updated October 7, 2024.
+        </h2>
         <main>
-          <div data-custom-class="body_text">
+          <p className="leading-relaxed mb-4">
             This Privacy Notice for Acroment LLC ("<strong>we</strong>," "
             <strong>us</strong>," or "<strong>our</strong>" ), describes how and
             why we might access, collect, store, use, and/or share ("
             <strong>process</strong>") your personal information when you use
             our services, including when you:
-          </div>
-          <ul>
-            <li data-custom-class="body_text">
-              Visit our website at
-              <a
-                href="https://protec-accessories.netlify.app/"
-                target="_blank"
-                data-custom-class="link"
-              >
-                https://protec-accessories.netlify.app/
-              </a>
-              <span>
-                , or any website of ours that links to this Privacy Notice.
-              </span>
-            </li>
-            <li data-custom-class="body_text">
-              Register for our mailing list.
-            </li>
-            <li data-custom-class="body_text">
-              Engage with us in other related ways, including wholesale and
-              retail sales, marketing, and events.
-            </li>
-          </ul>
-          <div>
-            <span data-custom-class="body_text">
-              <strong>Questions or concerns? </strong>Reading this Privacy
-              Notice will help you understand your privacy rights and choices.
-              We are responsible for making decisions about how your personal
-              information is processed. If you do not agree with our policies
-              and practices, please do not use our Services. If you still have
-              any questions or concerns, please contact us at
-              <a
-                href="acromentllc@gmail.com"
-                target="_blank"
-                data-custom-class="link"
-              >
-                acromentllc@gmail.com
-              </a>
-              .
-            </span>
+            <ul className="list-disc pl-6 mb-4">
+              <li className="mb-2">
+                Visit our website at
+                <a
+                  href="https://protec-accessories.netlify.app/"
+                  target="_blank"
+                  className="text-emerald-600 hover:underline"
+                >
+                  https://protec-accessories.netlify.app/
+                </a>
+                <span>
+                  , or any website of ours that links to this Privacy Notice.
+                </span>
+              </li>
+              <li className="mb-2">Register for our mailing list.</li>
+              <li className="mb-2">
+                Engage with us in other related ways, including wholesale and
+                retail sales, marketing, and events.
+              </li>
+            </ul>
+          </p>
+          <div className="leading-relaxed mb-6">
+            <strong>Questions or concerns? </strong>Reading this Privacy Notice
+            will help you understand your privacy rights and choices. We are
+            responsible for making decisions about how your personal information
+            is processed. If you do not agree with our policies and practices,
+            please do not use our Services. If you still have any questions or
+            concerns, please contact us at
+            <a
+              href="acromentllc@gmail.com"
+              className="text-emerald-600 hover:underline"
+            >
+              acromentllc@gmail.com
+            </a>
+            .
           </div>
           <div>
-            <strong>
-              <span data-custom-class="heading_1">SUMMARY OF KEY POINTS</span>
-            </strong>
-            <span data-custom-class="body_text">
+            <h1 className="text-xl font-bold mb-4">SUMMARY OF KEY POINTS</h1>
+            <p className="leading-relaxed mb-4">
               <strong>
                 <em>
                   This summary provides key points from our Privacy Notice, but
@@ -76,51 +59,45 @@ export default function PrivacyPolicy() {
                   clicking the link following each key point or by using our 
                 </em>
               </strong>
-            </span>
-            <a data-custom-class="link" href="#toc">
-              <span data-custom-class="body_text">
+              <a href="#toc" className="text-emerald-600 hover:underline">
                 <strong>
                   <em>table of contents</em>
                 </strong>
-              </span>
-            </a>
-            <span data-custom-class="body_text">
+              </a>
               <strong>
                 <em> below to find the section you are looking for.</em>
               </strong>
-            </span>
-            <div>
-              <span data-custom-class="body_text">
-                <strong>What personal information do we process?</strong> When
-                you visit, use, or navigate our Services, we may process
-                personal information depending on how you interact with us and
-                the Services, the choices you make, and the products and
-                features you use. Learn more about 
-              </span>
-              <a data-custom-class="link" href="#personalinfo">
-                <span data-custom-class="body_text">
-                  personal information you disclose to us
-                </span>
+            </p>
+            <div className="leading-relaxed mb-4">
+              <strong>What personal information do we process?</strong> When you
+              visit, use, or navigate our Services, we may process personal
+              information depending on how you interact with us and the
+              Services, the choices you make, and the products and features you
+              use. Learn more about 
+              <a
+                href="#personalinfo"
+                className="text-emerald-600 hover:underline"
+              >
+                personal information you disclose to us
               </a>
-              <span data-custom-class="body_text">.</span>
-              <br></br>
-              <span data-custom-class="body_text">
-                <strong>
-                  Do we process any sensitive personal information?
-                </strong>{" "}
-                We do not process any sensitive personal information, which may
-                include racial or ethnic origins, sexual orientation, and
-                religious beliefs.
-              </span>
-              <br></br>
-              <span data-custom-class="body_text">
-                <strong>
-                  Do we collect any information from third parties?
-                </strong>{" "}
-                No, we do not collect any information from third parties.
-              </span>
-              <br></br>
-              <span data-custom-class="body_text">
+              .
+              <ul className="list-disc pl-6 mb-4">
+                <li className="mb-2">
+                  <strong>
+                    Do we process any sensitive personal information?
+                  </strong>{" "}
+                  We do not process any sensitive personal information, which
+                  may include racial or ethnic origins, sexual orientation, and
+                  religious beliefs.
+                </li>
+                <li className="mb-2">
+                  <strong>
+                    Do we collect any information from third parties?
+                  </strong>{" "}
+                  No, we do not collect any information from third parties.
+                </li>
+              </ul>
+              <p className="leading-relaxed mb-4">
                 <strong>How do we process your information?</strong> We process
                 your information to provide, improve, and administer our
                 Services, communicate with you, for security and fraud
@@ -128,15 +105,12 @@ export default function PrivacyPolicy() {
                 information for other purposes with your consent. We process
                 your information only when we have a valid legal reason to do
                 so. Learn more about
-              </span>
-              <a data-custom-class="link" href="#infouse">
-                <span data-custom-class="body_text">
+                <a href="#infouse" className="text-emerald-600 hover:underline">
                   how we process your information
-                </span>
-              </a>
-              <span data-custom-class="body_text">.</span>
-              <br></br>
-              <span data-custom-class="body_text">
+                </a>
+                .
+              </p>
+              <p className="leading-relaxed mb-4">
                 <strong>How do we keep your information safe?</strong> We have
                 sufficient organizational and technical processes and procedures
                 in place to protect your personal information. However, no
@@ -146,163 +120,182 @@ export default function PrivacyPolicy() {
                 unauthorized third parties will not be able to defeat our
                 security and improperly collect, access, steal, or modify your
                 information. Learn more about 
-              </span>
-              <a data-custom-class="link" href="#infosafe">
-                <span data-custom-class="body_text">
+                <a
+                  href="#infosafe"
+                  className="text-emerald-600 hover:underline"
+                >
                   how we keep your information safe
-                </span>
-              </a>
-              <span data-custom-class="body_text">.</span>
-              <br></br>
-              <span data-custom-class="body_text">
+                </a>
+                .
+              </p>
+              <p className="leading-relaxed mb-4">
                 <strong>What are your rights?</strong> Depending on where you
                 are located geographically, the applicable privacy law may mean
                 you have certain rights regarding your personal information.
                 Learn more about 
-              </span>
-              <a data-custom-class="link" href="#privacyrights">
-                <span data-custom-class="body_text">your privacy rights</span>
-              </a>
-              <span data-custom-class="body_text">.</span>
-              <br></br>
-              <span data-custom-class="body_text">
+                <a
+                  href="#privacyrights"
+                  className="text-emerald-600 hover:underline"
+                >
+                  your privacy rights
+                </a>
+                .
+              </p>
+              <p className="leading-relaxed mb-4">
                 <strong>How do you exercise your rights?</strong> The easiest
                 way to exercise your rights is by submitting a
-              </span>
-              <a
-                data-custom-class="link"
-                href="https://app.termly.io/notify/58a41e8c-f63a-4411-8c81-84e7d802e9cf"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <span data-custom-class="body_text">
+                <a
+                  className="text-emerald-600 hover:underline"
+                  href="https://app.termly.io/notify/58a41e8c-f63a-4411-8c81-84e7d802e9cf"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   data subject access request
-                </span>
-              </a>
-              <span data-custom-class="body_text">
+                </a>
                 , or by contacting us. We will consider and act upon any request
                 in accordance with applicable data protection laws.
-              </span>
-              <br></br>
-              <span data-custom-class="body_text">
+              </p>
+              <p className="leading-relaxed mb-4">
                 Want to learn more about what we do with any information we
                 collect?
-              </span>
-              <a data-custom-class="link" href="#toc">
-                Review our Privacy Policy in full
-              </a>
+                <a href="#toc" className="text-emerald-600 hover:underline">
+                  Review our Privacy Policy in full
+                </a>
+              </p>
             </div>
-            <br></br>
             <div id="toc">
-              <strong>
-                <span data-custom-class="heading_1">TABLE OF CONTENTS</span>
-              </strong>
-              <br></br>
-              <ol>
-                <li>
-                  <a data-custom-class="link" href="#personalinfo">
-                    <span>1. WHAT INFORMATION DO WE COLLECT?</span>
+              <h1 className="text-xl font-semibold mt-6 mb-4">
+                TABLE OF CONTENTS
+              </h1>
+              <ol className="list-decimal pl-6 mb-4">
+                <li className="mb-2">
+                  <a
+                    href="#personalinfo"
+                    className="text-emerald-600 hover:underline"
+                  >
+                    <span>WHAT INFORMATION DO WE COLLECT?</span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#personalinfo">
-                    <span>2. HOW DO WE PROCESS YOUR INFORMATION?</span>
+                <li className="mb-2">
+                  <a
+                    href="#personalinfo"
+                    className="text-emerald-600 hover:underline"
+                  >
+                    <span>HOW DO WE PROCESS YOUR INFORMATION?</span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#personalinfo">
+                <li className="mb-2">
+                  <a
+                    href="#personalinfo"
+                    className="text-emerald-600 hover:underline"
+                  >
                     <span>
-                      3. WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
+                      WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
                       INFORMATION?
                     </span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#infouse">
+                <li className="mb-2">
+                  <a
+                    href="#infouse"
+                    className="text-emerald-600 hover:underline"
+                  >
                     <span>
-                      4. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL
-                      INFORMATION?
+                      WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
                     </span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#infouse">
-                    <span>5. HOW LONG DO WE KEEP YOUR INFORMATION?</span>
+                <li className="mb-2">
+                  <a
+                    href="#infouse"
+                    className="text-emerald-600 hover:underline"
+                  >
+                    <span>HOW LONG DO WE KEEP YOUR INFORMATION?</span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#infosafe">
-                    <span>6. HOW DO WE KEEP YOUR INFORMATION SAFE?</span>
+                <li className="mb-2">
+                  <a
+                    href="#infosafe"
+                    className="text-emerald-600 hover:underline"
+                  >
+                    <span>HOW DO WE KEEP YOUR INFORMATION SAFE?</span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#infosafe">
-                    <span>7. DO WE COLLECT INFORMATION FROM MINORS?</span>
+                <li className="mb-2">
+                  <a
+                    href="#infosafe"
+                    className="text-emerald-600 hover:underline"
+                  >
+                    <span>DO WE COLLECT INFORMATION FROM MINORS?</span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#privacyrights">
-                    <span>8. WHAT ARE YOUR PRIVACY RIGHTS?</span>
+                <li className="mb-2">
+                  <a
+                    href="#privacyrights"
+                    className="text-emerald-600 hover:underline"
+                  >
+                    <span>WHAT ARE YOUR PRIVACY RIGHTS?</span>
                   </a>
                 </li>
-                <li>
-                  <a data-custom-class="link" href="#privacyrights">
+                <li className="mb-2">
+                  <a
+                    href="#privacyrights"
+                    className="text-emerald-600 hover:underline"
+                  >
                     <span>
-                      9. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE
-                      COLLECT FROM YOU?
+                      HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT
+                      FROM YOU?
                     </span>
                   </a>
                 </li>
               </ol>
             </div>
             <div id="personalinfo">
-              <strong>
-                <span data-custom-class="heading_1">
-                  1. WHAT INFORMATION DO WE COLLECT?
-                </span>
-              </strong>
-              <span data-custom-class="heading_2">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                1. WHAT INFORMATION DO WE COLLECT?
+              </h2>
+              <h3 className="text-md mt-4 mb-3">
                 Personal information you disclose to us:
-              </span>
-              <p data-custom-class="body_text">
+              </h3>
+              <p className="leading-relaxed mb-4">
                 The personal information that we collect depends on the context
                 of your interactions with us and the Services, the choices you
                 make, and the products and features you use. The personal
                 information we collect may include the following:
+                <ul className="list-disc pl-6 mb-4">
+                  <li className="mb-2">names</li>
+                  <li className="mb-2">email addresses</li>
+                  <li className="mb-2">mailing & billing addresses</li>
+                  <li className="mb-2">phone numbers</li>
+                  <li className="mb-2">contact preferences</li>
+                  <li className="mb-2">contact or authentication data</li>
+                  <li className="mb-2">payment information</li>
+                </ul>
               </p>
-              <ul data-custom-class="body_text">
-                <li>names</li>
-                <li>email addresses</li>
-                <li>mailing & billing addresses</li>
-                <li>phone numbers</li>
-                <li>contact preferences</li>
-                <li>contact or authentication data</li>
-                <li>payment information</li>
-              </ul>
-              <span data-custom-class="body_text">
+              <p className="leading-relaxed mb-4">
                 <strong>Sensitive Information: </strong>We do not process
                 sensitive information.
-              </span>
-              <span data-custom-class="body_text">
-                <span>
-                  <strong>Payment Data: </strong>We may collect data necessary
-                  to process your payment if you choose to make purchases, such
-                  as your payment instrument number, and the security code
-                  associated with your payment instrument. All payment data is
-                  handled and stored by Stripe. You may find their privacy
-                  policy here:
-                </span>
-                <a data-custom-class="link" href="https://stripe.com/privacy">
+              </p>
+              <p className="leading-relaxed mb-4">
+                <strong>Payment Data: </strong>We may collect data necessary to
+                process your payment if you choose to make purchases, such as
+                your payment instrument number, and the security code associated
+                with your payment instrument. All payment data is handled and
+                stored by Stripe. You may find their privacy policy here:
+                <a
+                  href="https://stripe.com/privacy"
+                  className="text-emerald-600 hover:underline"
+                >
                   https://stripe.com/privacy
                 </a>
                 .
-                <span data-custom-class="body_text">
-                  All personal information that you provide to us must be true,
-                  complete, and accurate, and you must notify us of any changes
-                  to such personal information.
-                </span>
-              </span>
-              <span data-custom-class="body_text">
+              </p>
+              <p className="leading-relaxed mb-4">
+                All personal information that you provide to us must be true,
+                complete, and accurate, and you must notify us of any changes to
+                such personal information.
+              </p>
+              <p className="leading-relaxed mb-4">
                 <strong>Information Automatically Collected: </strong>We
                 automatically collect certain information when you visit, use,
                 or navigate the Services. This information does not reveal your
@@ -314,23 +307,21 @@ export default function PrivacyPolicy() {
                 and other technical information. This information is primarily
                 needed to maintain the security and operation of our Services,
                 and for our internal analytics and reporting purposes.
-              </span>
-              <span data-custom-class="body_text">
-                <span>
-                  <strong>Google API: </strong>Our use of information received
-                  from Google APIs will adhere to
-                  <a
-                    data-custom-class="link"
-                    href="https://developers.google.com/terms/api-services-user-data-policy"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Google API Services User Data Policy
-                  </a>
-                </span>
-                <span data-custom-class="body_text">, including the</span>
+              </p>
+              <p className="leading-relaxed mb-4">
+                <strong>Google API: </strong>Our use of information received
+                from Google APIs will adhere to
                 <a
-                  data-custom-class="link"
+                  className="text-emerald-600 hover:underline"
+                  href="https://developers.google.com/terms/api-services-user-data-policy"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Google API Services User Data Policy
+                </a>
+                , including the
+                <a
+                  className="text-emerald-600 hover:underline"
                   href="https://developers.google.com/terms/api-services-user-data-policy#limited-use"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -338,84 +329,80 @@ export default function PrivacyPolicy() {
                   Limited Use requirements
                 </a>
                 .
-              </span>
+              </p>
             </div>
             <div id="personalinfo">
-              <strong>
-                <span data-custom-class="heading_1">
-                  2. HOW DO WE PROCESS YOUR INFORMATION?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                2. HOW DO WE PROCESS YOUR INFORMATION?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 We process your information to provide, improve, and administer
                 our Services, communicate with you, fo security and fraud
                 prevention, and to comply with law. With your consent, we may
                 also process your information for other reasons, including:
+                <ul className="list-disc pl-6 mb-4">
+                  <li className="mb-2">
+                    <strong>
+                      To facilitate account creation and authentication and
+                      otherwise manage user accounts.
+                    </strong>
+                    We may process your information so you can create and log in
+                    to your account, as well as keep your account in working
+                    order.
+                  </li>
+                  <li className="mb-2">
+                    <strong>
+                      To respond to user inquiries/offer support to users.
+                    </strong>
+                    We may process your information to respond to your inquiries
+                    and solve any potential issues you might have with the
+                    requested service.
+                  </li>
+                  <li className="mb-2">
+                    <strong>To fulfill and manage your orders.</strong>We may
+                    process your information to fulfill and manage your orders,
+                    payments, returns, and exchanges made through the Services.
+                  </li>
+                  <li className="mb-2">
+                    <strong>To request feedback. </strong>We may process your
+                    information when necessary to request feedback and to
+                    contact you about your use of our Services.
+                  </li>
+                  <li className="mb-2">
+                    <strong>
+                      To send you marketing and promotional communications.
+                    </strong>
+                    We may process the personal information you send to us for
+                    our marketing purposes, if this is in accordance with your
+                    marketing preferences. You can opt out of our marketing
+                    emails at any time.
+                  </li>
+                  <li className="mb-2">
+                    <strong>
+                      To evaluate and improve our Services, products, marketing,
+                      and your experience.
+                    </strong>
+                    We may process your information when we believe it is
+                    necessary to identify usage trends, determine the
+                    effectiveness of our promotional campaigns, and to evaluate
+                    and improve our Services, products, marketing, and your
+                    experience.
+                  </li>
+                  <li className="mb-2">
+                    <strong>To comply with our legal obligations.</strong> We
+                    may process your information to comply with our legal
+                    obligations, respond to legal requests, and exercise,
+                    establish, or defend our legal rights.
+                  </li>
+                </ul>
               </p>
-              <ul data-custom-class="body_text">
-                <li data-custom-class="body_text">
-                  <strong>
-                    To facilitate account creation and authentication and
-                    otherwise manage user accounts.
-                  </strong>
-                  We may process your information so you can create and log in
-                  to your account, as well as keep your account in working
-                  order.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>
-                    To respond to user inquiries/offer support to users.
-                  </strong>
-                  We may process your information to respond to your inquiries
-                  and solve any potential issues you might have with the
-                  requested service.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>To fulfill and manage your orders.</strong>We may
-                  process your information to fulfill and manage your orders,
-                  payments, returns, and exchanges made through the Services.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>To request feedback. </strong>We may process your
-                  information when necessary to request feedback and to contact
-                  you about your use of our Services.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>
-                    To send you marketing and promotional communications.
-                  </strong>
-                  We may process the personal information you send to us for our
-                  marketing purposes, if this is in accordance with your
-                  marketing preferences. You can opt out of our marketing emails
-                  at any time.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>
-                    To evaluate and improve our Services, products, marketing,
-                    and your experience.
-                  </strong>
-                  We may process your information when we believe it is
-                  necessary to identify usage trends, determine the
-                  effectiveness of our promotional campaigns, and to evaluate
-                  and improve our Services, products, marketing, and your
-                  experience.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>To comply with our legal obligations.</strong> We may
-                  process your information to comply with our legal obligations,
-                  respond to legal requests, and exercise, establish, or defend
-                  our legal rights.
-                </li>
-              </ul>
             </div>
             <div id="personalinfo">
-              <strong>
-                <span data-custom-class="heading_1">
-                  3. WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
-                  INFORMATION?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                3. WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
+                INFORMATION?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 We only process your personal information when we believe it is
                 necessary and we have a valid legal reason (i.e., legal basis)
                 to do so under applicable law, like with your consent, to comply
@@ -423,68 +410,70 @@ export default function PrivacyPolicy() {
                 our contractual obligations, to protect your rights, or to
                 fulfill our legitimate business interests.
               </p>
-              <span data-custom-class="body_text">
+              <p className="leading-relaxed mb-4">
                 <em>
                   If you are located in Canada, this section applies to you.
                 </em>
-              </span>
-              <p data-custom-class="body_text">
+              </p>
+              <p className="leading-relaxed mb-4">
                 We may process your information if you have given us specific
                 permission (i.e. express consent) to use your personal
                 information for a specific purpose, or in situations where your
                 permission can be inferred (i.e. implied consent). You
                 can contact us to withdraw your consent at any time.
-                <span data-custom-class="body_text">
+                <p className="leading-relaxed mb-4">
                   In some exceptional cases, we may be legally permitted under
                   applicable law to process your information without your
                   consent, including, for example:
-                </span>
-                <ul data-custom-class="body_text">
-                  <li>
+                </p>
+                <ul className="list-disc pl-6 mb-4">
+                  <li className="mb-2">
                     If collection is clearly in the interests of an individual
                     and consent cannot be obtained in a timely way
                   </li>
-                  <li>For investigations and fraud detection and prevention</li>
-                  <li>
+                  <li className="mb-2">
+                    For investigations and fraud detection and prevention
+                  </li>
+                  <li className="mb-2">
                     For business transactions provided certain conditions are
                     met
                   </li>
-                  <li>
+                  <li className="mb-2">
                     If it is contained in a witness statement and the collection
                     is necessary to assess, process, or settle an insurance
                     claim
                   </li>
-                  <li>
+                  <li className="mb-2">
                     For identifying injured, ill, or deceased persons and
                     communicating with next of kin
                   </li>
-                  <li>
+                  <li className="mb-2">
                     If we have reasonable grounds to believe an individual has
                     been, is, or may be victim of financial abuse
                   </li>
-                  <li>
+                  <li className="mb-2">
                     If it is reasonable to expect collection and use with
                     consent would compromise the availability or the accuracy of
                     the information and the collection is reasonable for
                     purposes related to investigating a breach of an agreement
                     or a contravention of the laws of Canada or a province
                   </li>
-                  <li>
+                  <li className="mb-2">
                     If disclosure is required to comply with a subpoena,
                     warrant, court order, or rules of the court relating to the
                     production of records
                   </li>
-                  <li>
+                  <li className="mb-2">
                     If it was produced by an individual in the course of their
                     employment, business, or profession and the collection is
                     consistent with the purposes for which the information was
                     produced
                   </li>
-                  <li>
+                  <li className="mb-2">
                     If the collection is solely for journalistic, artistic, or
                     literary purposes
                   </li>
-                  <li>
+                  <li className="mb-2">
                     If the information is publicly available and is specified by
                     the regulations
                   </li>
@@ -492,44 +481,40 @@ export default function PrivacyPolicy() {
               </p>
             </div>
             <div id="infouse">
-              <strong>
-                <span data-custom-class="heading_1">
-                  4. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                4. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 We may share information in the following situations:
+                <ul className="list-disc pl-6 mb-4">
+                  <li className="mb-2">
+                    <strong>Business Partners.</strong> We may share your
+                    information with our business partners to offer you certain
+                    products, services, or promotions.
+                  </li>
+                  <li className="mb-2">
+                    <strong>Affiliates.</strong>We may share your information
+                    with our affiliates, in which case we will require those
+                    affiliates to honor this Privacy Notice. Affiliates include
+                    our parent company and any subsidiaries, joint venture
+                    partners, or other companies that we control or that are
+                    under common control with us.
+                  </li>
+                  <li className="mb-2">
+                    <strong>Business Transfers.</strong>We may share or transfer
+                    your information in connection with, or during negotiations
+                    of, any merger, sale of company assets, financing, or
+                    acquisition of all or a portion of our business to another
+                    company.
+                  </li>
+                </ul>
               </p>
-              <ul data-custom-class="body_text">
-                <li data-custom-class="body_text">
-                  <strong>Business Partners.</strong> We may share your
-                  information with our business partners to offer you certain
-                  products, services, or promotions.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Affiliates.</strong>We may share your information with
-                  our affiliates, in which case we will require those affiliates
-                  to honor this Privacy Notice. Affiliates include our parent
-                  company and any subsidiaries, joint venture partners, or other
-                  companies that we control or that are under common control
-                  with us.
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Business Transfers.</strong>We may share or transfer
-                  your information in connection with, or during negotiations
-                  of, any merger, sale of company assets, financing, or
-                  acquisition of all or a portion of our business to another
-                  company.
-                </li>
-              </ul>
             </div>
             <div id="infouse">
-              <strong>
-                <span data-custom-class="heading_1">
-                  5. HOW LONG DO WE KEEP YOUR INFORMATION?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                5. HOW LONG DO WE KEEP YOUR INFORMATION?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 We will only keep your personal information for as long as it is
                 necessary for the purposes set out in this Privacy Notice,
                 unless a longer retention period is required or permitted by law
@@ -537,7 +522,7 @@ export default function PrivacyPolicy() {
                 purpose in this notice will require us keeping your personal
                 information for longer than the period of time in which users
                 have an account with us.
-                <span data-custom-class="body_text">
+                <p className="leading-relaxed mb-4">
                   When we have no ongoing legitimate business need to process
                   your personal information, we will either delete or anonymize
                   such information, or, if this is not possible (for example,
@@ -545,16 +530,14 @@ export default function PrivacyPolicy() {
                   archives), then we will securely store your personal
                   information and isolate it from any further processing until
                   deletion is possible.
-                </span>
+                </p>
               </p>
             </div>
             <div id="infosafe">
-              <strong>
-                <span data-custom-class="heading_1">
-                  6. HOW DO WE KEEP YOUR INFORMATION SAFE?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                6. HOW DO WE KEEP YOUR INFORMATION SAFE?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 We have implemented appropriate and reasonable technical and
                 organizational security measures designed to protect the
                 security of any personal information we process. However,
@@ -571,12 +554,10 @@ export default function PrivacyPolicy() {
               </p>
             </div>
             <div id="infosafe">
-              <strong>
-                <span data-custom-class="heading_1">
-                  7. DO WE COLLECT INFORMATION FROM MINORS?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                7. DO WE COLLECT INFORMATION FROM MINORS?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 We do not knowingly collect, solicit data from, or market to
                 children under 18 years of age, nor do we knowingly sell such
                 personal information. By using the Services, you represent that
@@ -591,81 +572,77 @@ export default function PrivacyPolicy() {
               </p>
             </div>
             <div id="privacyrights">
-              <strong>
-                <span data-custom-class="heading_1">
-                  8. WHAT ARE YOUR PRIVACY RIGHTS?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                8. WHAT ARE YOUR PRIVACY RIGHTS?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 You have rights under certain US state data protection laws.
                 However, these rights are not absolute, and in certain cases, we
                 may decline your request as permitted by law. These rights
                 include:
+                <ul className="list-disc pl-6 mb-4">
+                  <li className="mb-2">
+                    <strong>Right to know</strong> whether or not we are
+                    processing your personal data
+                  </li>
+                  <li className="mb-2">
+                    <strong>Right to access</strong> your personal data
+                  </li>
+                  <li className="mb-2">
+                    <strong>Right to correct</strong> inaccuracies in your
+                    personal data
+                  </li>
+                  <li className="mb-2">
+                    <strong>Right to request</strong> the deletion of your
+                    personal data
+                  </li>
+                  <li className="mb-2">
+                    <strong>Right to obtain a copy</strong> of the personal data
+                    you previously shared with us
+                  </li>
+                  <li className="mb-2">
+                    <strong>Right to non-discrimination</strong> for exercising
+                    your rights
+                  </li>
+                  <li className="mb-4">
+                    <strong>Right to opt out</strong> of the processing of your
+                    personal data if it is used for targeted advertising
+                  </li>
+                  <p className="leading-relaxed mb-4">
+                    Depending upon the state where you live, you may also have
+                    the following rights:
+                  </p>
+                  <li className="mb-2">
+                    Right to obtain a list of the categories of third parties to
+                    which we have disclosed personal data (as permitted by
+                    applicable law, including California's and Delaware's
+                    privacy law)
+                  </li>
+                  <li className="mb-2">
+                    Right to obtain a list of specific third parties to which we
+                    have disclosed personal data (as permitted by applicable
+                    law, including Oregon’s privacy law)
+                  </li>
+                  <li className="mb-2">
+                    Right to limit use and disclosure of sensitive personal data
+                    (as permitted by applicable law, including California’s
+                    privacy law)
+                  </li>
+                  <li className="mb-3">
+                    Right to opt out of the collection of sensitive data and
+                    personal data collected through the operation of a voice or
+                    facial recognition feature (as permitted by applicable law,
+                    including Florida’s privacy law)
+                  </li>
+                </ul>
               </p>
-              <ul data-custom-class="body_text">
-                <li data-custom-class="body_text">
-                  <strong>Right to know</strong> whether or not we are
-                  processing your personal data
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Right to access</strong> your personal data
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Right to correct</strong> inaccuracies in your
-                  personal data
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Right to request</strong> the deletion of your
-                  personal data
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Right to obtain a copy</strong> of the personal data
-                  you previously shared with us
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Right to non-discrimination</strong> for exercising
-                  your rights
-                </li>
-                <li data-custom-class="body_text">
-                  <strong>Right to opt out</strong> of the processing of your
-                  personal data if it is used for targeted advertising
-                </li>
-                <span data-custom-class="body_text">
-                  Depending upon the state where you live, you may also have the
-                  following rights:
-                </span>
-                <li data-custom-class="body_text">
-                  Right to obtain a list of the categories of third parties to
-                  which we have disclosed personal data (as permitted by
-                  applicable law, including California's and Delaware's privacy
-                  law)
-                </li>
-                <li data-custom-class="body_text">
-                  Right to obtain a list of specific third parties to which we
-                  have disclosed personal data (as permitted by applicable law,
-                  including Oregon’s privacy law)
-                </li>
-                <li data-custom-class="body_text">
-                  Right to limit use and disclosure of sensitive personal data
-                  (as permitted by applicable law, including California’s
-                  privacy law)
-                </li>
-                <li data-custom-class="body_text">
-                  Right to opt out of the collection of sensitive data and
-                  personal data collected through the operation of a voice or
-                  facial recognition feature (as permitted by applicable law,
-                  including Florida’s privacy law)
-                </li>
-              </ul>
             </div>
             <div id="privacyrights">
-              <strong>
-                <span data-custom-class="heading_1">
-                  9. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT
-                  FROM YOU?
-                </span>
-              </strong>
-              <p data-custom-class="body_text">
+              <h2 className="text-lg font-medium mt-4 mb-3">
+                9. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT
+                FROM YOU?
+              </h2>
+              <p className="leading-relaxed mb-4">
                 Based on the applicable laws of your country or state of
                 residence in the US, you may have the right to request access to
                 the personal information we collect from you, details about how
@@ -677,10 +654,10 @@ export default function PrivacyPolicy() {
                 information, please email us at acromentllc@gmail.com, or fill
                 out and submit a
                 <a
-                  data-custom-class="link"
+                  className="text-emerald-600 hover:underline"
                   href="https://protec-accessories.netlify.app/warranty"
                 >
-                  warranty form on our FAQ page.
+                   warranty form on our FAQ page.
                 </a>
                 .
               </p>

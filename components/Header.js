@@ -19,6 +19,7 @@ import {
 } from "@headlessui/react";
 
 // import helper function(s)
+import ChangeCurrency from "utils/ChangeCurrency";
 
 // header contains nav icon, logo, cart icon
 // import proLogo from "";
@@ -26,6 +27,7 @@ import {
   Bars3Icon,
   ShoppingBagIcon,
   XMarkIcon,
+  CurrencyDollarIcon,
 } from "@heroicons/react/24/outline";
 
 const navigation = {
@@ -88,6 +90,8 @@ const navigation = {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [currency, setCurrency] = useState("USD");
+
   return (
     <div className="bg-white">
       <Dialog open={open} onClose={setOpen} className="relative z-40 lg:hidden">
@@ -224,7 +228,9 @@ export default function Header() {
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
               </button>
 
-              <div className="ml-4 flex lg:ml-0">{/* INSERT LOGO */}</div>
+              <div className="ml-4 flex lg:ml-0">
+                {/* INSERT LOGO */}
+              </div>
 
               <PopoverGroup className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
@@ -324,6 +330,24 @@ export default function Header() {
               </PopoverGroup>
 
               {/* CHANGE CURRENCY */}
+              <div className="ml-auto flex items-center space-x-6">
+                <div className="hidden lg:ml-8 lg:flex ml-auto">
+                  <a
+                    href="#"
+                    className="flex items-center"
+                  >
+                    <span className="sr-only">Currency</span>
+                    <CurrencyDollarIcon
+                      aria-hidden="true"
+                      className="h-4 w-4"
+                    />
+                    <ChangeCurrency
+                      currentCurrency={currency}
+                      setCurrency={setCurrency}
+                    />
+                  </a>
+                </div>
+              </div>
 
               <div className="ml-4 flow-root lg:ml-6">
                 {/* CART HREF */}
@@ -335,6 +359,7 @@ export default function Header() {
                   <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                     0
                   </span>
+                  {/* UPDATE # of items in cart */}
                   <span className="sr-only">items in cart, view bag</span>
                 </a>
               </div>

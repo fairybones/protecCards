@@ -3,7 +3,6 @@
 // Wholesale: req form
 "use client";
 import { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Field, Label, Switch } from "@headlessui/react";
 
 export default function Wholesale() {
@@ -105,7 +104,7 @@ export default function Wholesale() {
         </div>
         <Field className="flex mt-9 gap-x-4 sm:col-span-2">
             <div className="flex h-6 items-center">
-                <Switch checked={agreed} onChange={setAgreed} className="group flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 data-[checked]:bg-indigo-600"
+                <Switch checked={agreed} onChange={setAgreed} className="group flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800 data-[checked]:bg-emerald-600"
               >
                 <span className="sr-only">Consent to Contact</span>
                 <span
@@ -116,14 +115,14 @@ export default function Wholesale() {
             </div>
             <Label className="text-sm leading-6 text-gray-600">
                 By checking this, you agree to our{' '}
-                <a href="#" className="font-semibold text-indigo-600">
+                <a href="/privacy" className="font-semibold text-emerald-800" target="_blank">
                     privacy&nbsp;policy
                 </a>
                 .
             </Label>
         </Field>
         <div className="mt-10">
-            <button type="submit" className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            <button type="submit" className="block w-full rounded-md bg-emerald-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Let's talk
           </button>

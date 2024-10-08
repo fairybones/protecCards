@@ -103,19 +103,19 @@ export default function Warranty() {
               key={question.id}
               className="flex max-w-xl flex-col items-start justify-between"
             >
-              <div className="flex items-center gap-x-4 text-xs">
+              <div className="flex mb-3 items-center gap-x-4 text-xs">
                 <a
                   href={question.category.href}
-                  className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                  className="relative mt-3 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
                 >
                   {question.category.title}
                 </a>
               </div>
               <div className="group-relative">
-                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                <h3 className="mt-2 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                   {question.title}
                 </h3>
-                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
                   {question.description}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export default function Warranty() {
           ))}
         </div>
         <div className="mt-10 flex justify-end mr-10">
-          <button type="button" onClick={() => setFormOpen(true)} className="inline-flex w-full p-2 justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Warranty Request</button>
+          <button type="button" onClick={() => setFormOpen(true)} className="inline-flex w-full p-2 justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Warranty Request</button>
         </div>
       </div>
       {/* MODAL FORM */}

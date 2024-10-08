@@ -136,7 +136,7 @@ export default function TradingCards() {
                 </p>
               </div>
               <button
-                className="mt-2 px-4 py-2 text-white bg-emerald-300 hover:bg-emerald-500 rounded-md"
+                className="mt-2 px-4 py-2 text-white bg-emerald-400 hover:bg-emerald-500 rounded-md"
                 onClick={() => openPreview(product.id)}
               >
                 Add to Bag

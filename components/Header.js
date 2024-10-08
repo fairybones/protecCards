@@ -58,7 +58,7 @@ const navigation = {
             // ******************************
             // { name: "Card Sleeves", href: "#" },
             // { name: "Card Slabs", href: "#" },
-            { name: "Browse All", href: "/trading" },
+            { name: "Card Sleeves & Slabs", href: "/trading" },
           ],
         },
         {
@@ -66,7 +66,7 @@ const navigation = {
           name: "Grading Accessories",
           items: [
             // ******************************
-            { name: "Graded Slabs", href: "#" },
+            { name: "Grading Slabs", href: "#" },
           ],
         },
         {
@@ -75,14 +75,13 @@ const navigation = {
           items: [
             // ******************************
             { name: "Card Stands", href: "#" },
-            { name: "Browse All", href: "#" },
           ],
         },
       ],
     },
   ],
   forms: [
-    { name: "Warranty", href: "/warranty" },
+    { name: "Frequently Asked Questions", href: "/warranty" },
     { name: "Wholesale", href: "/wholesale" },
   ],
 };
@@ -206,7 +205,7 @@ export default function Header() {
       </Dialog>
 
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-emerald-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        <p className="flex h-10 items-center justify-center bg-emerald-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Ooo exciting offer!
         </p>
         <nav

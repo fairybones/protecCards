@@ -39,15 +39,13 @@ const navigation = {
       featured: [
         {
           name: "New Arrivals",
-          // ******************************
-          href: "#",
+          href: "/new",
           imageSrc: "https://placehold.co/400",
           imageAlt: "spotlight new products",
         },
         {
           name: "Bestsellers",
-          // ******************************
-          href: "#",
+          href: "/bestsellers",
           imageSrc: "https://placehold.co/400",
           imageAlt: "best selling products",
         },
@@ -228,9 +226,7 @@ export default function Header() {
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
               </button>
 
-              <div className="ml-4 flex lg:ml-0">
-                {/* INSERT LOGO */}
-              </div>
+              <div className="ml-4 flex lg:ml-0">{/* INSERT LOGO */}</div>
 
               <PopoverGroup className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
@@ -332,10 +328,7 @@ export default function Header() {
               {/* CHANGE CURRENCY */}
               <div className="ml-auto flex items-center space-x-6">
                 <div className="hidden lg:ml-8 lg:flex ml-auto">
-                  <a
-                    href="#"
-                    className="flex items-center"
-                  >
+                  <a href="#" className="flex items-center">
                     <span className="sr-only">Currency</span>
                     <CurrencyDollarIcon
                       aria-hidden="true"

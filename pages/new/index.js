@@ -1,52 +1,81 @@
 // https://tailwindui.com/components/ecommerce/components/product-lists
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "utils/supabaseClient";
 
-const products = [
-  {
-    id: 1,
-    name: "New",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    // *****************
-    href: "/new/1",
-    price: "$",
-  },
-  {
-    id: 2,
-    name: "New",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    // *****************
-    href: "/new/2",
-    price: "$",
-  },
-  {
-    id: 3,
-    name: "New",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    // *****************
-    href: "/new/3",
-    price: "$",
-  },
-  {
-    id: 4,
-    name: "New",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    // *****************
-    href: "/new/4",
-    price: "$",
-  },
-];
+// const products = [
+//   {
+//     id: 1,
+//     name: "New",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     // *****************
+//     href: "/new/1",
+//     price: "$",
+//   },
+//   {
+//     id: 2,
+//     name: "New",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     // *****************
+//     href: "/new/2",
+//     price: "$",
+//   },
+//   {
+//     id: 3,
+//     name: "New",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     // *****************
+//     href: "/new/3",
+//     price: "$",
+//   },
+//   {
+//     id: 4,
+//     name: "New",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     // *****************
+//     href: "/new/4",
+//     price: "$",
+//   },
+// ];
+export const getServerSideProps = async () => {
+  const { data: products, error } = await supabase.from("products").select("*").order("created_at", { ascending: false }).limit(4);
+
+  if (error) {
+    console.error("Error fetching new arrivals:", error);
+    return { props: { products: [] } };
+  }
+
+  return {
+    props: {
+      products,
+    },
+  };
+};
 
 export default function NewArrivals() {
+  const [products, setProducts] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchNewArrivals = async () => {
+  //     const { data: products, error } = await supabase.from("products").select("*").order("created_at", { ascending: false }).limit(4);
+
+  //     if (error) {
+  //       console.error("Error fetching new arrivals:", error);
+  //     } else {
+  //       setProducts(products);
+  //     }
+  //   };
+  //   fetchNewArrivals();
+  // }, []);
+
   const addToCart = (id) => {
-    setSelectedId(selectedId);
-  };
+    setSelectedId(id);
+  }
 
   return (
     <div className="bg-white">
@@ -68,10 +97,8 @@ export default function NewArrivals() {
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      {/* <a href={product.href}> */}
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product.name}
-                      {/* </a> */}
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">
                       {product.price}

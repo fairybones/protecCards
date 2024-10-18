@@ -1,9 +1,11 @@
+import supabase from "../utils/supabaseClient";
 import Head from "next/head";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
 import '@styles/globals.css'
 
 export default function App({ Component, pageProps }) {
+  console.log(supabase);
   return (
     <div>
       <Head>

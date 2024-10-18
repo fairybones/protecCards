@@ -1,122 +1,137 @@
 // https://tailwindui.com/components/ecommerce/components/product-lists
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-// import product preview modal
+import { supabase } from "utils/supabaseClient";
 
 // TRADING CARDS
-const products = [
-  {
-    id: "1",
-    name: "Product 1",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/1",
-  },
-  {
-    id: "2",
-    name: "Product 2",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/2",
-  },
-  {
-    id: "3",
-    name: "Product 3",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/3",
-  },
-  {
-    id: "4",
-    name: "Product 4",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/4",
-  },
-  {
-    id: "5",
-    name: "Product 5",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/5",
-  },
-  {
-    id: "6",
-    name: "Product 6",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/6",
-  },
-  {
-    id: "7",
-    name: "Product 7",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/7",
-  },
-  {
-    id: "8",
-    name: "Product 8",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/8",
-  },
-  {
-    id: "9",
-    name: "Product 9",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    sizes: "1",
-    price: "$",
-    href: "/trading/9",
-  },
-];
+// const products = [
+//   {
+//     id: "1",
+//     name: "Product 1",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "slabs for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/1",
+//   },
+//   {
+//     id: "2",
+//     name: "Product 2",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/2",
+//   },
+//   {
+//     id: "3",
+//     name: "Product 3",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "slabs for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/3",
+//   },
+//   {
+//     id: "4",
+//     name: "Product 4",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "slabs for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/4",
+//   },
+//   {
+//     id: "5",
+//     name: "Product 5",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "slabs for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/5",
+//   },
+//   {
+//     id: "6",
+//     name: "Product 6",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "slabs for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/6",
+//   },
+//   {
+//     id: "7",
+//     name: "Product 7",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/7",
+//   },
+//   {
+//     id: "8",
+//     name: "Product 8",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/8",
+//   },
+//   {
+//     id: "9",
+//     name: "Product 9",
+//     imageSrc: "https://placehold.co/400",
+//     imageAlt: "sleeves for protecting trading cards",
+//     description: "Product Description",
+//     sizes: "1",
+//     price: "$",
+//     href: "/trading/9",
+//   },
+// ];
 
 export default function TradingCards() {
-  const [selectedId, setSelectedId] = useState(null);
-  const router = useRouter();
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
-  // for opening product preview
-  const openPreview = (id) => {
-    setSelectedId(id);
-  };
-  // closing modal preview
-  const closePreview = () => {
-    setSelectedId(null);
-  };
+  useEffect(() => {
+    const fetchTrading = async () => {
+      const { data: products, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("category", "trading");
 
+      if (error) {
+        console.error("Error fetching trading card products:", error);
+      } else {
+        setProducts(products);
+      }
+    };
+    fetchTrading();
+  }, []);
+
+  const addToCart = (id) => {
+    const productToAdd = products.find((product) => product.id === id);
+    setCart([...cart, productToAdd]);
+    console.log(`Added product ${id} to cart`);
+  };
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Explore Trading Card Accessories
         </h2>
+        {products.length === 0 ? (
+          <p className="mt-3">Loading products...</p>
+        ) : (
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
             <Link key={product.id} href={`/trading/${product.id}`}>
@@ -137,13 +152,14 @@ export default function TradingCards() {
               </div>
               <button
                 className="mt-2 px-4 py-2 text-white bg-emerald-400 hover:bg-emerald-500 rounded-md"
-                onClick={() => openPreview(product.id)}
+                onClick={() => addToCart(product.id)}
               >
                 Add to Bag
               </button>
             </Link>
           ))}
         </div>
+      )}
       </div>
     </div>
   );

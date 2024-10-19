@@ -3,100 +3,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSupabase } from "context/SupabaseContext"; 
 
-// TRADING CARDS
-// const products = [
-//   {
-//     id: "1",
-//     name: "Product 1",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/1",
-//   },
-//   {
-//     id: "2",
-//     name: "Product 2",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/2",
-//   },
-//   {
-//     id: "3",
-//     name: "Product 3",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/3",
-//   },
-//   {
-//     id: "4",
-//     name: "Product 4",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/4",
-//   },
-//   {
-//     id: "5",
-//     name: "Product 5",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/5",
-//   },
-//   {
-//     id: "6",
-//     name: "Product 6",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/6",
-//   },
-//   {
-//     id: "7",
-//     name: "Product 7",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/7",
-//   },
-//   {
-//     id: "8",
-//     name: "Product 8",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/8",
-//   },
-//   {
-//     id: "9",
-//     name: "Product 9",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/9",
-//   },
-// ];
-
 export default function TradingCards() {
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
@@ -148,7 +54,7 @@ export default function TradingCards() {
                   <h3 className="mt-4 justify-start text-sm text-gray-700">
                     {product.name}
                   </h3>
-                  <p className="mt-1 text-lg font-medium text-gray-900">
+                  <p className="mt-1 text-sm font-medium text-gray-900">
                     ${product.price}
                   </p>
                 </div>

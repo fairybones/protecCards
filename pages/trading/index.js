@@ -3,113 +3,27 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSupabase } from "context/SupabaseContext"; 
 
-// TRADING CARDS
-// const products = [
-//   {
-//     id: "1",
-//     name: "Product 1",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/1",
-//   },
-//   {
-//     id: "2",
-//     name: "Product 2",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/2",
-//   },
-//   {
-//     id: "3",
-//     name: "Product 3",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/3",
-//   },
-//   {
-//     id: "4",
-//     name: "Product 4",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/4",
-//   },
-//   {
-//     id: "5",
-//     name: "Product 5",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/5",
-//   },
-//   {
-//     id: "6",
-//     name: "Product 6",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "slabs for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/6",
-//   },
-//   {
-//     id: "7",
-//     name: "Product 7",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/7",
-//   },
-//   {
-//     id: "8",
-//     name: "Product 8",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/8",
-//   },
-//   {
-//     id: "9",
-//     name: "Product 9",
-//     imageSrc: "https://placehold.co/400",
-//     imageAlt: "sleeves for protecting trading cards",
-//     description: "Product Description",
-//     sizes: "1",
-//     price: "$",
-//     href: "/trading/9",
-//   },
-// ];
-
 export default function TradingCards() {
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [sort, setSort] = useState("bundle_size");
 
   console.log(supabase);
 
   useEffect(() => {
     const fetchTrading = async () => {
-      const { data, error } = await supabase
+      let query = supabase
         .from("products")
         .select("*")
         .eq("category", "trading");
+
+      if (sort === "bundle_size") {
+        query = query.order("bundle_size", { ascending: true });
+      } else if (sort === "price") {
+        query = query.order("price", { ascending: true });
+      }
+      const { data, error } = await query;
 
       if (error) {
         console.error("Error fetching trading card products:", error);
@@ -118,7 +32,7 @@ export default function TradingCards() {
       }
     };
     fetchTrading();
-  }, [supabase]);
+  }, [supabase, sort]);
 
   const addToCart = (id) => {
     const productToAdd = products.find((product) => product.id === id);
@@ -131,6 +45,13 @@ export default function TradingCards() {
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Explore Trading Card Accessories
         </h2>
+        <div className="flex justify-end mb-4">
+          <label htmlFor="sort" className="mt-2 mr-2 text-sm font-medium text-gray-700">Sort By:</label>
+          <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)} className="text-sm text-gray-900 rounded-md">
+            <option value="price">Price ($ - $$$)</option>
+            <option value="bundle_size">Bundle Size</option>
+          </select>
+        </div>
         {products.length === 0 ? (
           <p className="mt-3">Loading products...</p>
         ) : (
@@ -148,12 +69,12 @@ export default function TradingCards() {
                   <h3 className="mt-3 justify-start text-sm text-gray-700">
                     {product.name}
                   </h3>
-                  <p className="mt-3 text-lg font-medium text-gray-900">
+                  <p className="mt-3 px-4 text-sm font-medium text-gray-900">
                     ${product.price}
                   </p>
                 </div>
                 <button
-                  className="mt-2 px-4 py-2 text-white bg-emerald-400 hover:bg-emerald-500 rounded-md"
+                  className="mt-2 px-3 py-2 text-white bg-emerald-500 hover:bg-emerald-400 rounded-md"
                   onClick={() => addToCart(product.id)}
                 >
                   Add to Bag

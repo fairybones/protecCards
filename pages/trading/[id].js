@@ -156,7 +156,7 @@ export default function ProductPreview() {
         <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
           {Array.isArray(product.description) ? (
             product.description.map((descriptionItem, index) => (
-              <li key={description} className="text-gray-400">
+              <li key={product.description} className="text-gray-400">
                 <span className="text-gray-600">{descriptionItem}</span>
               </li>
             ))

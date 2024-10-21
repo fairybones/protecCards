@@ -1,5 +1,5 @@
+"use client"
 // https://tailwindui.com/components/ecommerce/components/store-navigation
-"use client";
 
 // import necessary packages & components
 import { Fragment, useState } from "react";
@@ -55,9 +55,6 @@ const navigation = {
           id: "trading",
           name: "Trading Cards",
           items: [
-            // ******************************
-            // { name: "Card Sleeves", href: "#" },
-            // { name: "Card Slabs", href: "#" },
             { name: "Card Sleeves & Slabs", href: "/trading" },
           ],
         },
@@ -65,16 +62,14 @@ const navigation = {
           id: "grading",
           name: "Grading Accessories",
           items: [
-            // ******************************
-            { name: "Grading Slabs", href: "#" },
+            { name: "Grading Slabs", href: "/grading" },
           ],
         },
         {
           id: "display",
           name: "Display Cases",
           items: [
-            // ******************************
-            { name: "Card Stands", href: "#" },
+            { name: "Card Stands", href: "/display" },
           ],
         },
       ],

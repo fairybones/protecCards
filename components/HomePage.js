@@ -14,24 +14,21 @@ const categories = [
     description: "Professional supplies for grading cards.",
     imageSrc: "https://placehold.co/400",
     imageAlt: "professional labels and slabs for graded cards",
-    // ********************************************************
-    href: "#",
+    href: "/grading",
   },
   {
     name: "Display Cards",
     description: "Card stands and holders for displaying any trading card.",
     imageSrc: "https://placehold.co/400",
     imageAlt: "display trading cards",
-    // ********************************************************
-    href: "#",
+    href: "/display",
   },
   {
-    name: "Comics & More",
-    description: "Display cases for other prized possessions.",
+    name: "Bestsellers",
+    description: "Our bestselling products on Amazon & Ebay, now here!",
     imageSrc: "https://placehold.co/400",
     imageAlt: "display collectibles",
-    // ********************************************************
-    href: "#",
+    href: "/bestsellers",
   },
 ];
 

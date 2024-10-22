@@ -9,111 +9,9 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-// import products
-const products = [
-  {
-    id: "1",
-    name: "Product 1",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/1",
-  },
-  {
-    id: "2",
-    name: "Product 2",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/2",
-  },
-  {
-    id: "3",
-    name: "Product 3",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/3",
-  },
-  {
-    id: "4",
-    name: "Product 4",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/4",
-  },
-  {
-    id: "5",
-    name: "Product 5",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/5",
-  },
-  {
-    id: "6",
-    name: "Product 6",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "slabs for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/6",
-  },
-  {
-    id: "7",
-    name: "Product 7",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/7",
-  },
-  {
-    id: "8",
-    name: "Product 8",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/8",
-  },
-  {
-    id: "9",
-    name: "Product 9",
-    imageSrc: "https://placehold.co/400",
-    imageAlt: "sleeves for protecting trading cards",
-    description: "Product Description",
-    quantity: "1",
-    color: "1",
-    price: "$",
-    href: "/trading/9",
-  },
-];
-
 export default function Cart() {
   const [open, setOpen] = useState(true);
+  const [cart, setCart] = useState([]);
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -156,8 +54,8 @@ export default function Cart() {
                           <li key={product.id} className="flex py-6">
                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                               <img
-                                alt={product.imageAlt}
-                                src={product.imageSrc}
+                                alt={product.image_alt}
+                                src={product.image_src}
                                 className="h-full w-full object-cover object-center"
                               />
                             </div>

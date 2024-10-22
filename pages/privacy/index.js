@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
         <h2 className="text-lg font-semibold mt-6 mb-4">
           Last updated October 7, 2024.
         </h2>
-        <main>
+        <main className="p-5">
           <p className="leading-relaxed mb-4">
             This Privacy Notice for Acroment LLC ("<strong>we</strong>," "
             <strong>us</strong>," or "<strong>our</strong>" ), describes how and
@@ -82,7 +82,7 @@ export default function PrivacyPolicy() {
               </a>
               .
               <ul className="list-disc pl-6 mb-4">
-                <li className="mb-2">
+                <li className="mt-2 mb-2">
                   <strong>
                     Do we process any sensitive personal information?
                   </strong>{" "}
@@ -254,15 +254,12 @@ export default function PrivacyPolicy() {
               <h2 className="text-lg font-medium mt-4 mb-3">
                 1. WHAT INFORMATION DO WE COLLECT?
               </h2>
-              <h3 className="text-md mt-4 mb-3">
-                Personal information you disclose to us:
-              </h3>
               <p className="leading-relaxed mb-4">
                 The personal information that we collect depends on the context
                 of your interactions with us and the Services, the choices you
                 make, and the products and features you use. The personal
                 information we collect may include the following:
-                <ul className="list-disc pl-6 mb-4">
+                <ul className="list-disc mt-4 pl-6 mb-4">
                   <li className="mb-2">names</li>
                   <li className="mb-2">email addresses</li>
                   <li className="mb-2">mailing & billing addresses</li>
@@ -337,10 +334,10 @@ export default function PrivacyPolicy() {
               </h2>
               <p className="leading-relaxed mb-4">
                 We process your information to provide, improve, and administer
-                our Services, communicate with you, fo security and fraud
+                our Services, communicate with you, for security and fraud
                 prevention, and to comply with law. With your consent, we may
                 also process your information for other reasons, including:
-                <ul className="list-disc pl-6 mb-4">
+                <ul className="list-disc mt-3 pl-6 mb-4">
                   <li className="mb-2">
                     <strong>
                       To facilitate account creation and authentication and
@@ -486,7 +483,7 @@ export default function PrivacyPolicy() {
               </h2>
               <p className="leading-relaxed mb-4">
                 We may share information in the following situations:
-                <ul className="list-disc pl-6 mb-4">
+                <ul className="list-disc pl-6 mt-3 mb-4">
                   <li className="mb-2">
                     <strong>Business Partners.</strong> We may share your
                     information with our business partners to offer you certain
@@ -580,7 +577,7 @@ export default function PrivacyPolicy() {
                 However, these rights are not absolute, and in certain cases, we
                 may decline your request as permitted by law. These rights
                 include:
-                <ul className="list-disc pl-6 mb-4">
+                <ul className="list-disc mt-3 pl-6 mb-4">
                   <li className="mb-2">
                     <strong>Right to know</strong> whether or not we are
                     processing your personal data
@@ -608,7 +605,7 @@ export default function PrivacyPolicy() {
                     <strong>Right to opt out</strong> of the processing of your
                     personal data if it is used for targeted advertising
                   </li>
-                  <p className="leading-relaxed mb-4">
+                  <p className="leading-relaxed mt-2 mb-4">
                     Depending upon the state where you live, you may also have
                     the following rights:
                   </p>
@@ -657,7 +654,7 @@ export default function PrivacyPolicy() {
                   className="text-emerald-600 hover:underline"
                   href="https://protec-accessories.netlify.app/warranty"
                 >
-                   warranty form on our FAQ page.
+                  warranty form on our FAQ page.
                 </a>
                 .
               </p>

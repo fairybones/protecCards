@@ -121,6 +121,7 @@ export default function Warranty() {
         </div>
       </div>
       {/* MODAL FORM */}
+      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <Dialog
         open={formOpen}
         onClose={() => setFormOpen(false)}
@@ -132,30 +133,30 @@ export default function Warranty() {
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity -z-10 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
       />
-            <DialogTitle>Let us make things right.</DialogTitle>
+            <DialogTitle className="font-bold text-lg">Let us make things right.</DialogTitle>
             <p>
               Check your email for the next steps. Please give us 1-2 business
               days to reply.
             </p>
             <Fieldset className="space-y-8">
-              <Legend className="text-log font-bold">Tell us more...</Legend>
               <Field>
-                <Label className="block">Email Address</Label>
+                <Label className="mt-3 block">Email Address</Label>
                 <Input className="mt-1 block" name="contact" />
               </Field>
               <Field>
-                <Label className="block">Your Name</Label>
+                <Label className="mt-2 block">Name on Order</Label>
                 <Textarea className="mt-1 block" name="name" />
               </Field>
+              <Legend className="font-bold">Tell us more...</Legend>
               <Field>
-                <Label className="block">Product Affected</Label>
+                <Label className="mt-2 block">Product Affected :(</Label>
                 <Textarea className="mt-1 block" name="product" />
               </Field>
               <Field>
-                <Label className="block">
+                <Label className="block font-semibold">
                   Preferred Method of Reconcilliation
                 </Label>
-                <Select className="mt-1 block" name="method">
+                <Select className="mt-2 block" name="method">
                   <option>Replacement</option>
                   <option>Return & Refund</option>
                 </Select>
@@ -164,7 +165,7 @@ export default function Warranty() {
             <div className="flex gap-4">
               <button onClick={() => setFormOpen(false)}>Cancel</button>
               <button
-                className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                className="inline-flex items-center gap-2 rounded-md bg-emerald-600 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-red-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
                 onClick={() => setFormOpen(false)}
               >
                 Submit
@@ -173,6 +174,7 @@ export default function Warranty() {
           </DialogPanel>
         </div>
       </Dialog>
+      </div>
     </div>
   );
 }

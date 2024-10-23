@@ -1,6 +1,5 @@
-"use client";
-
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "context/CartContext";
 import {
   Dialog,
   DialogBackdrop,
@@ -10,11 +9,24 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Cart() {
+  const { cartItems, dispatch } = useContext(CartContext);
+
   const [open, setOpen] = useState(true);
-  const [cart, setCart] = useState([]);
+
+  const handleRemove = (id) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: id });
+  };
+
+  const calculateSubtotal = () => {
+    return cartItems.reduce((total, product) => total + product.price * product.quantity, 0);
+  }
+
+  if (cartItems.length === 0) {
+    return <div className="text-center p-6">Your cart is empty</div>;
+  }
 
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-10">
+    <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
@@ -50,7 +62,7 @@ export default function Cart() {
                         role="list"
                         className="-my-6 divide-y divide-gray-200"
                       >
-                        {products.map((product) => (
+                        {cartItems.map((product) => (
                           <li key={product.id} className="flex py-6">
                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                               <img
@@ -63,9 +75,9 @@ export default function Cart() {
                               <div>
                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                   <h3>
-                                    <a href={product.href}>{product.name}</a>
+                                {product.name}
                                   </h3>
-                                  <p className="ml-4">{product.price}</p>
+                                  <p className="ml-4">${product.price}</p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">
                                   {product.color}
@@ -80,6 +92,7 @@ export default function Cart() {
                                   <button
                                     type="button"
                                     className="font-medium text-emerald-700 hover:text-emerald-500"
+                                    onClick={() => handleRemove(product.id)}
                                   >
                                     Remove
                                   </button>
@@ -95,7 +108,7 @@ export default function Cart() {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    {/* CALC PRICE */}
+                    <p>${calculateSubtotal().toFixed(2)}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">
                     Shipping and taxes calculated at checkout.

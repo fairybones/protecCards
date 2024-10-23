@@ -11,9 +11,7 @@ export default function ProductPreview() {
   const supabase = useSupabase();
 
   const [product, setProduct] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     if (!id) return;
@@ -31,8 +29,8 @@ export default function ProductPreview() {
         setProduct(data);
         setLoading(false);
       }
-      fetchProduct();
     };
+    fetchProduct();
   }, [id, supabase]);
 
   if (loading) {
@@ -78,15 +76,15 @@ export default function ProductPreview() {
           </div>
         </div>
         <img
-          alt={image_alt}
-          src={image_src}
+          alt={product.image_alt}
+          src={product.image_src}
           width={2432}
           height={1442}
           className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
         />
       </div>
       <button
-        onClick={() => addToCart(product.id)}
+        onClick={() => addToCart(product)}
         className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-emerald-600 px-8 py-3 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
       >
         Add to Cart

@@ -1,5 +1,6 @@
 import supabase from "../utils/supabaseClient";
 import { SupabaseProvider } from "context/SupabaseContext";
+import { CartProvider } from "context/CartContext";
 import Head from "next/head";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
@@ -36,11 +37,13 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SupabaseProvider client={supabase}>
+        <CartProvider>
         <Header />
         <main>
           <Component {...pageProps} />
           {fetchError && <p>{fetchError}</p>}
         </main>
+        </CartProvider>
       </SupabaseProvider>
       <Footer />
     </div>

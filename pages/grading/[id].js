@@ -2,9 +2,14 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSupabase } from "context/SupabaseContext";
+import { Radio, RadioGroup } from "@headlessui/react";
 import addToCart from "utils/addToCart";
 import Link from "next/link";
 
+// tailwind helper function
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 export default function ProductPreview() {
   const router = useRouter();
   const { id } = router.query;
@@ -12,6 +17,7 @@ export default function ProductPreview() {
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedColor, setSelectedColor] = useState(null);
 
   useEffect(() => {
     if (!id) return;
@@ -27,6 +33,7 @@ export default function ProductPreview() {
         console.error(`Error fetching product ${id}:`, error);
       } else {
         setProduct(data);
+        setSelectedColor(data.color[0]);
         setLoading(false);
       }
     };
@@ -41,54 +48,91 @@ export default function ProductPreview() {
   }
 
   return (
-    <div className="overflow-hidden bg-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          <div className="lg:pr-8 lg:pt-4">
-            <div className="lg:max-w-lg">
-              <Link href="/grading">
-                <label className="text-base font-semibold leading-7 text-emerald-800 hover:text-emerald-600">
-                  ← Back to Grading Cards
-                </label>
-              </Link>
-              <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                {product.name}
-              </p>
-              {/* COLOR OPTIONS */}
+    <div className="bg-white py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* Product Image on left */}
+          <div className="w-full max-w-lg mx-auto lg:max-w-none lg:mx-0">
+            <img
+              alt={product.image_alt}
+              src={product.image_src}
+              className="w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
+
+          <div>
+            <Link href="/grading">
+              <label className="mb-2 text-base font-semibold text-emerald-800 hover:text-emerald-600">
+                ← Back to Grading Cards
+              </label>
+            </Link>
+            {/* Product Details on right */}
+            <h1 className="mt-4 text-4xl font-bold text-gray-900">
+              {product.name}
+            </h1>
+            <p className="mt-4 text-xl text-gray-500">${product.price}</p>
+            {/* Color Options */}
+            <div className="mt-6">
+              <h3 className="text-sm mb-2 font-medium text-gray-700">Color Options</h3>
+              <RadioGroup
+                value={selectedColor}
+                onChange={setSelectedColor}
+                className="mt-2 flex space-x-4"
+              >
+                {Array.isArray(product.color) ? (
+                  product.color.map((colorItem, index) => (
+                    <Radio
+                      key={index}
+                      className={classNames(
+                        colorItem.selectedClass,
+                        "cursor-pointer rounded-full p-0.5 focus:outline-red"
+                      )}
+                    >
+                      <div className="flex flex-col items-center">
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            colorItem.class,
+                            "h-8 w-8 rounded-full border border-gray-300"
+                          )}
+                        />
+                        <span className="mt-1 text-xs text-gray-500">
+                          {colorItem}
+                        </span>
+                      </div>
+                    </Radio>
+                  ))
+                ) : (
+                  <p className="text-gray-400">* 1 available option *</p>
+                )}
+              </RadioGroup>
             </div>
-            <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+            {/* Product Description */}
+            <div className="mt-6">
               {Array.isArray(product.description) ? (
                 product.description.map((descriptionItem, index) => (
-                  <div key={product.description} className="relative pl-9">
-                    <dt className="inline font-semibold text-gray-900">
-                      <StarIcon
-                        aria-hidden="true"
-                        className="absolute left-1 top-1 h-5 w-5 text-emerald-800"
-                      />
-                      {descriptionItem}
-                    </dt>
+                  <div key={index} className="mx-auto mb-2 flex items-start space-x-2">
+                    <StarIcon
+                      className="h-5 w-5 text-emerald-800 flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                    <p className="text-base mb-2 text-gray-700">{descriptionItem}</p>
                   </div>
                 ))
               ) : (
                 <p className="text-gray-400">No description available.</p>
               )}
-            </dl>
+            </div>
+            {/* Add to Cart */}
+            <button
+              onClick={() => addToCart(product)}
+              className="mt-8 flex w-auto items-center justify-center rounded-md bg-emerald-600 px-6 py-2 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
-        <img
-          alt={product.image_alt}
-          src={product.image_src}
-          width={2432}
-          height={1442}
-          className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-        />
       </div>
-      <button
-        onClick={() => addToCart(product)}
-        className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-emerald-600 px-8 py-3 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
-      >
-        Add to Cart
-      </button>
     </div>
   );
 }

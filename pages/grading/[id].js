@@ -64,7 +64,7 @@ export default function ProductPreview() {
           </div>
           <div>
             <Link href="/grading">
-              <label className="mb-2 text-base font-semibold text-emerald-800 hover:text-emerald-600">
+              <label className="mb-5 text-base font-semibold text-emerald-800 hover:text-emerald-600">
                 ← Back to Grading Cards
               </label>
             </Link>

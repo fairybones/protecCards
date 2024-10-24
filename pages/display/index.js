@@ -7,6 +7,7 @@ import addToCart from "utils/addToCart";
 export default function Display() {
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   const [sort, setSort] = useState("bundle_size");
 
   useEffect(() => {

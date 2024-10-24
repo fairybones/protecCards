@@ -1,16 +1,7 @@
-export default function addToCart(product, cartItems, dispatch) {
-  const existingItem = cartItems.find((item) => item.id === product.id);
+import Cart from "pages/cart";
 
-  if (existingItem) {
-    dispatch({
-      type: "UPDATE_CART_ITEM",
-      payload: { ...existingItem, quantity: existingItem + 1 },
-    });
-  } else {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: { ...product, quantity: 1 },
-    });
-  }
-  console.log(`Added product ${product.id} to cart`);
+export default function addToCart({ id }) {
+    const productToAdd = product.id === id;
+    setCart ([...Cart, productToAdd ]);
+    console.log(`Added product ${id} to cart`);
 }

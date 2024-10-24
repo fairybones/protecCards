@@ -7,7 +7,6 @@ import addToCart from "utils/addToCart";
 export default function Display() {
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
   const [sort, setSort] = useState("bundle_size");
 
   useEffect(() => {
@@ -68,6 +67,7 @@ export default function Display() {
                     src={product.image_src}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
+                  </div>
                   <div className="flex justify-between">
                     <h3 className="mt-3 justify-start text-sm text-gray-700">
                       {product.name}
@@ -81,7 +81,6 @@ export default function Display() {
                 >
                   Add to Bag
                 </button>
-                </div>
               </Link>
             ))}
           </div>

@@ -36,7 +36,7 @@ export default function ProductPreview() {
         console.error(`Error fetching product ${id}:`, error);
       } else {
         setProduct(data);
-        setSelectedColor(data.color[0]);
+        setSelectedColor(data.color);
         setLoading(false);
       }
     };
@@ -63,9 +63,9 @@ export default function ProductPreview() {
             />
           </div>
           <div>
-            <Link href="/grading">
+            <Link href="/display">
               <label className="mb-5 text-base font-semibold text-emerald-800 hover:text-emerald-600">
-                ← Back to Grading Cards
+                ← Back to Display Accessories
               </label>
             </Link>
             {/* Product Details on right */}

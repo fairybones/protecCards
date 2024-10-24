@@ -1,10 +1,11 @@
 import { StarIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSupabase } from "context/SupabaseContext";
 import { Radio, RadioGroup } from "@headlessui/react";
 import addToCart from "utils/addToCart";
 import Link from "next/link";
+import { CartContext } from "context/CartContext";
 
 // tailwind helper function
 function classNames(...classes) {
@@ -18,6 +19,8 @@ export default function ProductPreview() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedColor, setSelectedColor] = useState(null);
+
+  const { cart, setCart } = useContext(CartContext);
 
   useEffect(() => {
     if (!id) return;
@@ -59,7 +62,6 @@ export default function ProductPreview() {
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
-
           <div>
             <Link href="/grading">
               <label className="mb-2 text-base font-semibold text-emerald-800 hover:text-emerald-600">
@@ -125,7 +127,7 @@ export default function ProductPreview() {
             </div>
             {/* Add to Cart */}
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => addToCart(product, cartItems, dispatch)}
               className="mt-8 flex w-auto items-center justify-center rounded-md bg-emerald-600 px-6 py-2 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
               Add to Cart

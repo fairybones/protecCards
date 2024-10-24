@@ -1,6 +1,6 @@
 "use client"
 // https://tailwindui.com/components/ecommerce/components/store-navigation
-
+import { useContext } from "react";
 // import necessary packages & components
 import { Fragment, useState } from "react";
 import {
@@ -20,6 +20,7 @@ import {
 
 // import helper function(s)
 import ChangeCurrency from "utils/ChangeCurrency";
+import { CartContext } from "context/CartContext";
 
 // header contains nav icon, logo, cart icon
 // import proLogo from "";
@@ -84,6 +85,9 @@ const navigation = {
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState("USD");
+
+  const { cartItems } = useContext(CartContext);
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="bg-white">
@@ -345,7 +349,7 @@ export default function Header() {
                     className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                   />
                   <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                    0
+                    {totalItems}
                   </span>
                   {/* UPDATE # of items in cart */}
                   <span className="sr-only">items in cart, view bag</span>

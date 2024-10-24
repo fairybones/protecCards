@@ -2,11 +2,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSupabase } from "context/SupabaseContext";
+import addToCart from "utils/addToCart";
 
 export default function GradingCards() {
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
   const [sort, setSort] = useState("bundle_size");
 
   useEffect(() => {
@@ -31,12 +31,6 @@ export default function GradingCards() {
     };
     fetchGrading();
   }, [supabase, sort]);
-
-  const addToCart = (id) => {
-    const productToAdd = products.find((product) => product.id === id);
-    setCart([...cart, productToAdd]);
-    console.log(`Added product ${id} to cart`);
-  };
 
   return (
     <div className="bg-white">

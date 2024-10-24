@@ -1,12 +1,12 @@
 // https://tailwindui.com/components/ecommerce/components/product-lists
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSupabase } from "context/SupabaseContext"; 
+import { useSupabase } from "context/SupabaseContext";
+import addToCart from "utils/addToCart";
 
 export default function TradingCards() {
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
   const [sort, setSort] = useState("bundle_size");
 
   // console.log(supabase);
@@ -34,11 +34,6 @@ export default function TradingCards() {
     fetchTrading();
   }, [supabase, sort]);
 
-  const addToCart = (id) => {
-    const productToAdd = products.find((product) => product.id === id);
-    setCart([...cart, productToAdd]);
-    console.log(`Added product ${id} to cart`);
-  };
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -46,8 +41,18 @@ export default function TradingCards() {
           Explore Trading Card Accessories
         </h2>
         <div className="flex justify-end mb-4">
-          <label htmlFor="sort" className="mt-2 mr-2 text-sm font-medium text-gray-700">Sort By:</label>
-          <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)} className="text-sm text-gray-900 rounded-md">
+          <label
+            htmlFor="sort"
+            className="mt-2 mr-2 text-sm font-medium text-gray-700"
+          >
+            Sort By:
+          </label>
+          <select
+            id="sort"
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="text-sm text-gray-900 rounded-md"
+          >
             <option value="price">Price ($ - $$$)</option>
             <option value="bundle_size">Bundle Size</option>
           </select>

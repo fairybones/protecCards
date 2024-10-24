@@ -1,10 +1,5 @@
-import { useContext } from "react";
-import { CartContext } from "context/CartContext";
-
-export default function addToCart(product) {
-  const { cartItems, dispatch } = useContext(CartContext);
-
-  const existingItem = cartItems.find((product) => product.id);
+export default function addToCart(product, cartItems, dispatch) {
+  const existingItem = cartItems.find((item) => item.id === product.id);
 
   if (existingItem) {
     dispatch({
@@ -17,5 +12,5 @@ export default function addToCart(product) {
       payload: { ...product, quantity: 1 },
     });
   }
-  console.log(`Added product ${id} to cart`);
+  console.log(`Added product ${product.id} to cart`);
 }

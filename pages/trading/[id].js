@@ -10,7 +10,6 @@ import Link from "next/link";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
 export default function ProductPreview() {
   const router = useRouter();
   const { id } = router.query;
@@ -132,7 +131,7 @@ export default function ProductPreview() {
             </div>
             {/* Add to Cart */}
             <button
-              onClick={() => addToCart(product, setCart, cart)}
+              onClick={() => addToCart(product, cartItems, dispatch)}
               className="mt-10 flex w-auto items-center justify-center rounded-md bg-emerald-600 px-8 py-3 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               Add to Cart

@@ -9,7 +9,7 @@ export default function TradingCards() {
   const [cart, setCart] = useState([]);
   const [sort, setSort] = useState("bundle_size");
 
-  console.log(supabase);
+  // console.log(supabase);
 
   useEffect(() => {
     const fetchTrading = async () => {

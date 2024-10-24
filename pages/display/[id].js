@@ -1,13 +1,13 @@
-import { StarIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState, useContext } from "react";
+import { StarIcon } from "@heroicons/react/24/outline";
+import { Radio, RadioGroup } from "@headlessui/react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSupabase } from "context/SupabaseContext";
-import { Radio, RadioGroup } from "@headlessui/react";
 import { CartContext } from "context/CartContext";
 import addToCart from "utils/addToCart";
 import Link from "next/link";
 
-// tailwind helper function
+// tailwind helper function for classNames/classes
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -17,8 +17,9 @@ export default function ProductPreview() {
   const supabase = useSupabase();
 
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  // set as null until products are fetched
 
   const { cartItems, dispatch } = useContext(CartContext);
 
@@ -44,17 +45,15 @@ export default function ProductPreview() {
   }, [id, supabase]);
 
   if (loading) {
-    return <div>Loading product details...</div>;
+    return <div className="mt-2">Loading product details...</div>;
   }
   if (!product) {
     return <div>Product not found.</div>;
   }
-
   return (
     <div className="bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* Product Image on left */}
           <div className="w-full max-w-lg mx-auto lg:max-w-none lg:mx-0">
             <img
               alt={product.image_alt}
@@ -62,21 +61,21 @@ export default function ProductPreview() {
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
-
           <div>
-            <Link href="/grading">
+            <Link href="/display">
               <label className="mb-2 text-base font-semibold text-emerald-800 hover:text-emerald-600">
-                ← Back to Grading Cards
+                ← Back to Display Accessories
               </label>
             </Link>
-            {/* Product Details on right */}
             <h1 className="mt-4 text-4xl font-bold text-gray-900">
               {product.name}
             </h1>
             <p className="mt-4 text-xl text-gray-500">${product.price}</p>
             {/* Color Options */}
             <div className="mt-6">
-              <h3 className="text-sm mb-2 font-medium text-gray-700">Color Options</h3>
+              <h3 className="text-sm mb-2 font-medium text-gray-700">
+                Color Options
+              </h3>
               <RadioGroup
                 value={selectedColor}
                 onChange={setSelectedColor}
@@ -114,12 +113,17 @@ export default function ProductPreview() {
             <div className="mt-6">
               {Array.isArray(product.description) ? (
                 product.description.map((descriptionItem, index) => (
-                  <div key={index} className="mx-auto mb-2 flex items-start space-x-2">
+                  <div
+                    key={index}
+                    className="mx-auto mb-2 flex items-start space-x-2"
+                  >
                     <StarIcon
                       className="h-5 w-5 text-emerald-800 flex-shrink-0"
                       aria-hidden="true"
                     />
-                    <p className="text-base mb-2 text-gray-700">{descriptionItem}</p>
+                    <p className="text-base mb-2 text-gray-700">
+                      {descriptionItem}
+                    </p>
                   </div>
                 ))
               ) : (

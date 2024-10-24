@@ -20,7 +20,7 @@ export default function ProductPreview() {
   const [selectedColor, setSelectedColor] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { cart, setCart } = useContext(CartContext);
+  const { cartItems, dispatch } = useContext(CartContext);
 
   useEffect(() => {
     if (!id) return;
@@ -132,7 +132,7 @@ export default function ProductPreview() {
             </div>
             {/* Add to Cart */}
             <button
-              onClick={() => addToCart(product, setCart, cart)}
+              onClick={() => addToCart(product, cartItems, dispatch)}
               className="mt-10 flex w-auto items-center justify-center rounded-md bg-emerald-600 px-8 py-3 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               Add to Cart

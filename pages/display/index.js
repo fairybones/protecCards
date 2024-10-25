@@ -76,7 +76,7 @@ export default function Display() {
                       ${product.price}
                     </p>
                   </div>
-                  <button className="mt-2 px-3 py-2 text-white bg-emerald-500 hover:bg-emerald-400 rounded-md"
+                  <button className="mt-2 px-3 py-2 text-white bg-black hover:bg-emerald-500 rounded-md"
                   onClick={() => addToCart(product.id)}
                 >
                   Add to Bag

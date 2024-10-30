@@ -112,7 +112,7 @@ export default function ProductPreview() {
             {/* Product Description */}
             <div className="mt-6">
               {Array.isArray(product.description) ? (
-                product.descriptionmap((descriptionItem, index) => (
+                product.description.map((descriptionItem, index) => (
                   <div
                     key={index}
                     className="mx-auto mb-2 flex items-start space-x-2"

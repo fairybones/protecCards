@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "context/CartContext";
 import {
   Dialog,
@@ -10,6 +10,10 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Cart() {
   const { cartItems, dispatch } = useContext(CartContext);
+  useEffect(() => {
+    console.log("Current cart items:", cartItems);
+    console.log("Dispatch function:", dispatch);
+  }, [cartItems, dispatch]);
 
   const [open, setOpen] = useState(true);
 
@@ -26,7 +30,8 @@ export default function Cart() {
   }
 
   return (
-    <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
+    <div>
+      <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
@@ -142,5 +147,7 @@ export default function Cart() {
         </div>
       </div>
     </Dialog>
+    <div>{cartItems}</div>
+    </div>
   );
 }

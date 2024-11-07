@@ -206,7 +206,7 @@ export default function Header() {
       </Dialog>
 
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-emerald-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        <p className="flex h-10 items-center justify-center bg-yellow-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Ooo exciting offer!
         </p>
         <nav

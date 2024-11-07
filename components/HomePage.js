@@ -61,7 +61,7 @@ export default function Home() {
                     {category.description}
                   </p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">$</p>
+                <p className="text-sm font-medium text-gray-900">→</p>
               </div>
             </div>
           ))}

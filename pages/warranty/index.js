@@ -77,6 +77,9 @@ const questions = [
   },
 ];
 
+const initValues = {
+  
+}
 export default function Warranty() {
   const [formOpen, setFormOpen] = useState(false);
 

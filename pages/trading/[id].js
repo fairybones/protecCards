@@ -73,7 +73,7 @@ export default function ProductPreview() {
             <p className="mt-4 text-md text-gray-700">{product.internal_size}</p>
             {/* Color Options */}
             <div className="mt-6">
-              <h3 className="text-sm mb-2 font-medium text-gray-700">
+              <h3 className="text-sm mb-4 font-medium text-gray-700">
                 Color
               </h3>
               <RadioGroup
@@ -85,6 +85,7 @@ export default function ProductPreview() {
                   product.color.map((colorItem, index) => (
                     <Radio
                       key={index}
+                      value={colorItem}
                       className={classNames(
                         colorItem.selectedClass,
                         "cursor-pointer rounded-full p-0.5 focus:outline-red"
@@ -95,13 +96,15 @@ export default function ProductPreview() {
                           aria-hidden="true"
                           className={classNames(
                             colorItem.class,
-                            "h-8 w-8 rounded-full border border-gray-300"
+                            "h-8 w-8 rounded-full border border-gray-300",
+                            selectedColor === colorItem && "border-2 border-emerald-500"
                           )}
                         />
-                        <span className="mt-1 text-xs text-gray-500">
-                          {colorItem}
-                        </span>
+      
                       </div>
+                      <h3 className="mt-1 text-xs text-gray-700">
+                          {colorItem}
+                        </h3>
                     </Radio>
                   ))
                 ) : (

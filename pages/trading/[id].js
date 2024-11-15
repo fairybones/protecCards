@@ -88,7 +88,7 @@ export default function ProductPreview() {
                       value={colorItem}
                       className={classNames(
                         colorItem.selectedClass,
-                        "cursor-pointer rounded-full p-0.5 focus:outline-red"
+                        "cursor-pointer rounded-full p-0.5"
                       )}
                     >
                       <div className="flex flex-col items-center">
@@ -96,8 +96,8 @@ export default function ProductPreview() {
                           aria-hidden="true"
                           className={classNames(
                             colorItem.class,
-                            "h-8 w-8 rounded-full border border-gray-300",
-                            selectedColor === colorItem && "border-2 border-emerald-500"
+                            "h-8 w-8 rounded-full border border-emerald-600",
+                            selectedColor === colorItem && "border-2 bg-gray-300"
                           )}
                         />
       

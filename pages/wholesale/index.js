@@ -21,6 +21,7 @@ export default function Wholesale() {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
+  let values = [];
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

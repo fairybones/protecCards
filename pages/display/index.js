@@ -14,7 +14,8 @@ export default function Display() {
       let query = supabase
         .from("products")
         .select("*")
-        .eq("category", "display");
+        .eq("category", "display")
+        .eq("is_stocked", true);
 
       if (sort === "bundle_size") {
         query = query.order("bundle_size", { ascending: true });

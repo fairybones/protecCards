@@ -11,7 +11,11 @@ export default function Bestsellers() {
 
   useEffect(() => {
     const fetchBestsellers = async () => {
-      let query = supabase.from("products").select("*").eq("tag", "best");
+      let query = supabase
+        .from("products")
+        .select("*")
+        .eq("tag", "best")
+        .eq("is_stocked", true);
 
       if (sort === "price") {
         query = query.order("price", { ascending: true });

@@ -16,7 +16,8 @@ export default function TradingCards() {
       let query = supabase
         .from("products")
         .select("*")
-        .eq("category", "trading");
+        .eq("category", "trading")
+        .eq("is_stocked", true);
 
       if (sort === "bundle_size") {
         query = query.order("bundle_size", { ascending: true });

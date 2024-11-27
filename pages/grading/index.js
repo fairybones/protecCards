@@ -14,7 +14,8 @@ export default function GradingCards() {
       let query = supabase
         .from("products")
         .select("*")
-        .eq("category", "grading");
+        .eq("category", "grading")
+        .eq("is_stocked", true);
 
       if (sort === "bundle_size") {
         query = query.order("bundle_size", { ascending: true });

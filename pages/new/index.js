@@ -15,7 +15,8 @@ export default function NewArrivals() {
         .from("products")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(4);
+        .limit(4)
+        .eq("is_stocked", true);
 
       if (sort === "bundle_size") {
         query = query.order("bundle_size", { ascending: true });

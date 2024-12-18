@@ -1,4 +1,5 @@
 // Warranty FAQ + modal form
+"use client";
 import { useState } from "react";
 import {
   Dialog,
@@ -78,7 +79,55 @@ const questions = [
 ];
 
 export default function Warranty() {
+  // open & close modal form
   const [formOpen, setFormOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    product: "",
+    method: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: "warranty",
+          formData,
+        }),
+      });
+      if (res.ok) {
+        setMessage("Email sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          product: "",
+          method: "",
+        });
+      } else {
+        setMessage("Failed to send email.");
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage("An error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-white py-24 sm:py-32">
@@ -117,63 +166,103 @@ export default function Warranty() {
           ))}
         </div>
         <div className="mt-10 flex justify-end mr-10">
-          <button type="button" onClick={() => setFormOpen(true)} className="inline-flex w-full p-2 justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Warranty Request</button>
+          <button
+            type="button"
+            onClick={() => setFormOpen(true)}
+            className="inline-flex w-full p-2 justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+          >
+            Warranty Request
+          </button>
         </div>
       </div>
       {/* MODAL FORM */}
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <Dialog
-        open={formOpen}
-        onClose={() => setFormOpen(false)}
-        className="relative z-50"
-      >
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-          <DialogBackdrop
-        transition
-        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity -z-10 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
-      />
-            <DialogTitle className="font-bold text-lg">Let us make things right.</DialogTitle>
-            <p>
-              Check your email for the next steps. Please give us 1-2 business
-              days to reply.
-            </p>
-            <Fieldset className="space-y-8">
-              <Field>
-                <Label className="mt-3 block">Email Address</Label>
-                <Input className="mt-1 block" name="contact" />
-              </Field>
-              <Field>
-                <Label className="mt-2 block">Name on Order</Label>
-                <Textarea className="mt-1 block" name="name" />
-              </Field>
-              <Legend className="font-bold">Tell us more...</Legend>
-              <Field>
-                <Label className="mt-2 block">Product Affected :(</Label>
-                <Textarea className="mt-1 block" name="product" />
-              </Field>
-              <Field>
-                <Label className="block font-semibold">
-                  Preferred Method of Reconcilliation
-                </Label>
-                <Select className="mt-2 block" name="method">
-                  <option>Replacement</option>
-                  <option>Return & Refund</option>
-                </Select>
-              </Field>
-            </Fieldset>
-            <div className="flex gap-4">
-              <button onClick={() => setFormOpen(false)}>Cancel</button>
-              <button
-                className="inline-flex items-center gap-2 rounded-md bg-emerald-600 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-red-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
-                onClick={() => setFormOpen(false)}
-              >
-                Submit
-              </button>
-            </div>
-          </DialogPanel>
-        </div>
-      </Dialog>
+        <Dialog
+          open={formOpen}
+          onClose={() => setFormOpen(false)}
+          className="relative z-50"
+        >
+          <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+            <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+              <DialogBackdrop
+                transition
+                className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity -z-10 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
+              />
+              <DialogTitle className="font-bold text-lg">
+                Let us make things right.
+              </DialogTitle>
+              <p>
+                Check your email for the next steps. Please give us 1-2 business
+                days to reply.
+              </p>
+              <Fieldset className="space-y-8">
+                <Field>
+                  <Label className="mt-3 block">Email Address</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="text"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block"
+                  />
+                </Field>
+                <Field>
+                  <Label className="mt-2 block">Name on Order</Label>
+                  <Input
+                    className="mt-1 block"
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Field>
+                <Legend className="font-bold">Tell us more...</Legend>
+                <Field>
+                  <Label className="mt-2 block">Product Affected:</Label>
+                  <Input
+                    className="mt-1 block"
+                    id="product"
+                    name="product"
+                    type="text"
+                    value={formData.product}
+                    onChange={handleChange}
+                  />
+                </Field>
+                <Field>
+                  <Label className="block font-semibold">
+                    Preferred Method of Reconcilliation
+                  </Label>
+                  <Select
+                    className="mt-2 block"
+                    id="method"
+                    name="method"
+                    value={formData.method}
+                    onChange={handleChange}
+                  >
+                    <option>Replacement</option>
+                    <option>Return & Refund</option>
+                  </Select>
+                </Field>
+              </Fieldset>
+              <div className="flex gap-4">
+                <button onClick={() => setFormOpen(false)}>Cancel</button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  onClick={handleSubmit}
+                  className="inline-flex items-center gap-2 rounded-md bg-emerald-600 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-red-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                >
+                  {loading ? "Sending..." : "Submit"}
+                </button>
+              </div>
+              {message && <p className="mt-4 text-center text-sm">{message}</p>}
+            </DialogPanel>
+          </div>
+        </Dialog>
       </div>
     </div>
   );

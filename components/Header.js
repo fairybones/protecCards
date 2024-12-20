@@ -1,7 +1,7 @@
 "use client"
 // https://tailwindui.com/components/ecommerce/components/store-navigation
-import { useContext } from "react";
-// import necessary packages & components
+import React, { useContext } from "react";
+import Link from "next/link";
 import { Fragment, useState } from "react";
 import {
   Dialog,
@@ -86,8 +86,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState("USD");
 
-  const { cartItems } = useContext(CartContext);
-  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const { cart } = useContext(CartContext);
+  const cartItems = cart?.cartItems;
 
   return (
     <div className="bg-white">
@@ -256,8 +256,8 @@ export default function Header() {
                                   >
                                     <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                                       <img
-                                        alt={item.imageAlt}
-                                        src={item.imageSrc}
+                                        alt={item.image_alt}
+                                        src={item.image_src}
                                         className="object-cover object-center"
                                       />
                                     </div>
@@ -343,17 +343,17 @@ export default function Header() {
 
               <div className="ml-4 flow-root lg:ml-6">
                 {/* CART HREF */}
-                <a href="/cart" className="group -m-2 flex items-center p-2">
+                <Link href="/cart" className="group -m-2 flex items-center p-2">
                   <ShoppingBagIcon
                     aria-hidden="true"
                     className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                   />
                   <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                    {totalItems}
+                    {cartItems?.length || 0}
                   </span>
                   {/* UPDATE # of items in cart */}
                   <span className="sr-only">items in cart, view bag</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

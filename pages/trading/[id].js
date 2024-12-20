@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { useSupabase } from "context/SupabaseContext";
 import { CartContext } from "context/CartContext";
-import addToCart from "utils/addToCart";
+// import addToCart from "utils/addToCart";
 import Link from "next/link";
 
 function classNames(...classes) {
@@ -18,8 +18,7 @@ export default function ProductPreview() {
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const { cartItems, dispatch } = useContext(CartContext);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!id) return;
@@ -48,6 +47,26 @@ export default function ProductPreview() {
   if (!product) {
     return <div>Product not found.</div>;
   }
+
+  const { addItemToCart } = useContext(CartContext);
+
+  const addToCartHandler = () => {
+    try {
+      addItemToCart({
+        product: product.id,
+        name: product.name,
+        price: product.price,
+        bundle_size: product.bundle_size,
+        image: product.image_src,
+        color: product.colorItem,
+      });
+      setMessage("Item added to cart! 🎉")
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+      setMessage("Failed to add item to cart. Please try again.");
+    }
+    setTimeout(() => setMessage(""), 3000);
+  };
   return (
     <div className="bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -70,12 +89,12 @@ export default function ProductPreview() {
               {product.name}
             </h1>
             <p className="mt-4 text-2xl text-gray-500">${product.price}</p>
-            <p className="mt-4 text-md text-gray-700">{product.internal_size}</p>
+            <p className="mt-4 text-md text-gray-700">
+              {product.internal_size}
+            </p>
             {/* Color Options */}
             <div className="mt-6">
-              <h3 className="text-sm mb-4 font-medium text-gray-700">
-                Color
-              </h3>
+              <h3 className="text-sm mb-4 font-medium text-gray-700">Color</h3>
               <RadioGroup
                 value={selectedColor}
                 onChange={setSelectedColor}
@@ -97,14 +116,14 @@ export default function ProductPreview() {
                           className={classNames(
                             colorItem.class,
                             "h-8 w-8 rounded-full border border-emerald-600",
-                            selectedColor === colorItem && "border-2 bg-gray-300"
+                            selectedColor === colorItem &&
+                              "border-2 bg-gray-300"
                           )}
                         />
-      
                       </div>
                       <h3 className="mt-1 text-xs text-gray-700">
-                          {colorItem}
-                        </h3>
+                        {colorItem}
+                      </h3>
                     </Radio>
                   ))
                 ) : (
@@ -135,11 +154,14 @@ export default function ProductPreview() {
             </div>
             {/* Add to Cart */}
             <button
-          onClick={() => addToCart(product, cartItems, dispatch)}
+              onClick={addToCartHandler}
               className="mt-10 flex w-auto items-center justify-center rounded-md bg-emerald-600 px-8 py-3 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               Add to Cart
             </button>
+            {message && (
+              <p className="mt-4 text-sm font-medium text-gray-700">{message}</p>
+            )}
           </div>
         </div>
       </div>

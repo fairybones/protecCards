@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSupabase } from "context/SupabaseContext";
-import addToCart from "utils/addToCart";
 
 export default function Display() {
   const supabase = useSupabase();

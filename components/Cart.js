@@ -135,12 +135,13 @@ const Cart = () => {
                       <span className="text-xs text-gray-700 mb-1">*Shipping calculated at checkout.</span>
                     </li>
                   </ul>
-                  {cart?.cartItems?.length === 0 && (
+                  {/* {cart?.cartItems?.length === 0 && (
                     <div className="text-center py-10">
                       <h2 className="text-2xl font-semibold mb-4">Your cart is empty</h2>
                       <Link href="/" className="text-emerald-700 hover:underline">Continue Shopping</Link>
                     </div>
-                  )}
+                  )} */}
+                  <Link href="/" className="text-emerald-700 hover:underline">Continue Shopping</Link>
                 </article>
               </aside>
             </div>

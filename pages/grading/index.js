@@ -83,7 +83,6 @@ export default function GradingCards() {
                 </div>
                 <button
                   className="mt-3 px-3 py-2 text-white bg-gray-800 hover:bg-emerald-500 rounded-md"
-                  onClick={() => addToCart(product.id)}
                 >
                   Add to Bag
                 </button>

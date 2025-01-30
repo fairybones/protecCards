@@ -31,52 +31,60 @@ const Cart = () => {
     addItemToCart(item);
     }
   };
-  const subtotal = customerCart?.cartItems?.reduce(
-    (acc, item) => acc + item.quantity * item.price,
-    0
-  );
+  const findSubtotal = (cartItems) => { 
+    if (!cartItems || cartItems.length === 0) return 0;
+  return cartItems.reduce((acc, item) => acc +item.quantity * item.price, 0).toFixed(2);
+  };
+  const subtotal = findSubtotal(customerCart?.cartItems);
+
   const taxAmount = (subtotal * 0.15).toFixed(2);
   const total = (Number(subtotal) + Number(taxAmount)).toFixed(2);
   
   return (
     <div>
       <section className="py-5 sm:py-7">
-        <div className="container max-w-screen-xl mx-auto px-4">
-          <h2 className="text-3xl font-semiold mb-2">
-            {customerCart?.cartItems.length || 0} Items in Cart
+          <h2 className="text-xl font-semiold mb-2">
+            {customerCart?.cartItems.length || 0} Items in Cart!
           </h2>
-        </div>
       </section>
+      <img
+          alt={"ProTec Logo"}
+          src={
+            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/hero.png"
+          }
+          className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-screen-lg"
+        />
       {customerCart?.cartItems?.length > 0 && (
-        <section className="py-10">
-          <div className="container max-w-screen-xl mx-auto px-4">
-            <div className="flex flex-col md:flex-row gap-4">
-              <main className="md:w-3/4">
-                <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
+        <section className="py-6">
+          <div className="container mx-auto px-4 max-w-screen-xl">
+            <div className="flex flex-col md:flex-row gap-6">
+              <main className="md:w-3/4 h-full">
+                <article className="border border-gray-200 bg-white shadow-sm rounded-lg mb-5p-5 max-h-full">
                   {customerCart?.cartItems?.map((cartItem) => (
-                    <div key={cartItem.product}>
-                      <div className="flex flex-wrap lg:flex-row gap-5 mb-4">
-                        <div className="w-full lg:w-2/5 xl:w-2/4">
+                    <div key={cartItem.product} className="flex flex-wrap mt-5 ml-5 items-center gap-6 border-b pb-6">
+                      <div className="flex flex-wrap lg:flex-row gap-5 mb-6">
+                        <div className="w-full lg:w-1/4">
                           <figure className="flex leading-5">
-                            <div>
-                              <div className="block w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                                <img src={cartItem.image} alt={cartItem.name} />
+                            <div className="w-full lg:w-1/4">
+                              <div className="w-24 h-24 rounded border border-gray-200 overflow-hidden mb-2">
+                                {/* <img src={cartItem.image} alt={cartItem.name} className="w-full h-full object-cover"/> */}
                               </div>
                             </div>
-                            <figcaption className="ml-3">
-                              <p>
-                                <a href={`/${cartItem.product}`} className="hover:text-emerald-600">
+                            <figcaption className="flex-1 min-w-0 ml-20">
+                              <p className="text-lg font-medium text-gray-800">
+                                <Link href={`/${cartItem.product}`} className="hover:text-emerald-600">
                                   {cartItem.name}
-                                </a>
+                                </Link>
                               </p>
+                              <p className="text-gray-600 mt-3">Price: ${cartItem.price.toFixed(2)}</p>
                             </figcaption>
                           </figure>
                         </div>
                         <div className="w-24">
-                          <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                          <div className="flex items-center ml-20">
                             <button
                               data-action="decrement"
-                              className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+                              className="bg-gray-100 text-gray-600 px-3 py-1 rounded-l-md hover:bg-gray-400 transition"
                               onClick={() => decreaseQty(cartItem)}
                             >
                               <span className="m-auto text-2xl font-thin">
@@ -85,14 +93,14 @@ const Cart = () => {
                             </button>
                             <input
                               type="number"
-                              className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-900 custom-input-number"
+                              className="w-12 text-center bg-gray-100 font-semibold text-md  md:text-basecursor-default flex items-center text-gray-900 custom-input-number"
                               name="custom-input-number"
                               value={cartItem.quantity}
                               readOnly
                             ></input>
                             <button
                               data-action="increment"
-                              className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
+                              className="bg-gray-100 text-gray-600 px-3 py-1 rounded-md hover:bg-gray-400 transition"
                               onClick={() => increaseQty(cartItem)}
                             >
                               <span className="m-auto text-2xl font-thin">
@@ -101,10 +109,10 @@ const Cart = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="flex-auto">
+                        <div className="ml-auto">
                           <div className="float-right">
                             <a
-                              className="px-4 py-2 inline-block text-red-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 cursor-pointer"
+                              className="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-md hover:bg-gray-400 transition"
                               onClick={() =>
                                 deleteItemFromCart(cartItem?.product)
                               }
@@ -119,14 +127,15 @@ const Cart = () => {
                   ))}
                 </article>
               </main>
-              <aside className="md:w-1/4">
-                <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
-                  <ul className="mb-5">
-                    <li className="flex justify-between text-gray-600 mb-1">
+              <aside className="md:w-1/4 h-full">
+                <article className="border border-gray-200 bg-white shadow-sm rounded-lg mb-5 p-5">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Order Summary</h3>
+                  <ul className="text-gray-700 space-y-2">
+                    <li className="flex justify-between mb-1">
                       <span>Subtotal:</span>
-                      <span>${subtotal}</span>
+                      <span className="font-semibold">${subtotal}</span>
                     </li>
-                    <li className="flex justify-between text-gray-600 mb-1">
+                    <li className="flex justify-between mb-1">
                       <span>Total Units:</span>
                       <span className="text-emerald-700">
                         {customerCart?.cartItems?.reduce(
@@ -135,20 +144,23 @@ const Cart = () => {
                         )}
                       </span>
                     </li>
-                    <li className="flex justify-between text-gray-600 mb-1">
+                    <li className="flex justify-between mb-1">
                       <span>Estimated Tax:</span>
-                      <span>${taxAmount}</span>
+                      <span className="font-semibold">${taxAmount}</span>
                     </li>
-                    <li className="flex justify-between text-gray-600 mb-1">
+                    <li className="flex justify-between text-lg font-semibold mb-1">
                       <span>Total:</span>
                       <span>${total}</span>
-                      <span className="text-xs text-gray-700 mb-1">*Shipping calculated at checkout.</span>
                     </li>
                   </ul>
+                  <p className="text-xs text-gray-700 mt-2 mb-1">*Shipping calculated at checkout.</p>
+                  <button className="w-full mt-4 bg-emerald-600 text-white py-2 rounded-lg hover:bg-emerald-700 transition">
+            Proceed to Checkout
+          </button>
                   {cart?.cartItems?.length === 0 && (
                     <div className="text-center py-10">
-                      <h2 className="text-2xl font-semibold mb-4">Your cart is empty</h2>
-                      <Link href="/" className="text-emerald-700 hover:underline">Continue Shopping</Link>
+                      <h2 className="text-2xl font-semibold mb-4">Your cart is empty.</h2>
+                      <Link href="https://protecaccessories.com/" className="text-emerald-700 hover:underline">Continue Shopping</Link>
                     </div>
                   )}
                 </article>

@@ -203,7 +203,6 @@ export default function Header() {
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-yellow-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Checkout coming soon!
-          <a href="https://protecaccessories.com"></a>
         </p>
         <nav
           aria-label="Top"
@@ -261,8 +260,8 @@ export default function Header() {
                                   >
                                     <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                                       <img
-                                        alt={item.image_alt}
-                                        src={item.image_src}
+                                        alt={item.imageAlt}
+                                        src={item.imageSrc}
                                         className="object-cover object-center"
                                       />
                                     </div>

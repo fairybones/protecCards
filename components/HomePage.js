@@ -1,5 +1,5 @@
-// https://tailwindui.com/components/ecommerce/components/product-lists
-
+"use client"
+import Link from "next/link";
 // HOME / SHOP BY CATEGORY
 const categories = [
   {
@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div className="bg-white">
       <div className="flex justify-center">
-        {/* INSERT LOGO */}
+        <Link key={categories} href={"https://protecaccessories.com/"}>
         <img
           alt={"ProTec Logo"}
           src={
@@ -48,6 +48,7 @@ export default function Home() {
           }
           className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-screen-lg"
         />
+        </Link>
       </div>
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">

@@ -5,28 +5,32 @@ const categories = [
   {
     name: "Trading Cards",
     description: "Pokemon, Magic, Sports, & More!",
-    imageSrc: "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/34.png",
+    imageSrc:
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/34.png",
     imageAlt: "slabs and sleeves for protecting trading cards",
     href: "/trading",
   },
   {
     name: "Grading",
     description: "Professional supplies for grading cards.",
-    imageSrc: "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/34.png",
+    imageSrc:
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/34.png",
     imageAlt: "professional labels and slabs for graded cards",
     href: "/grading",
   },
   {
     name: "Display Cards",
     description: "Card stands and holders for displaying any trading card.",
-    imageSrc: "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/32.png",
+    imageSrc:
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/32.png",
     imageAlt: "display trading cards",
     href: "/display",
   },
   {
     name: "Bestsellers",
     description: "Our bestselling products on Amazon & Ebay, now here!",
-    imageSrc: "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/35.png",
+    imageSrc:
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/35.png",
     imageAlt: "display collectibles",
     href: "/bestsellers",
   },
@@ -35,6 +39,16 @@ const categories = [
 export default function Home() {
   return (
     <div className="bg-white">
+      <div className="flex justify-center">
+        {/* INSERT LOGO */}
+        <img
+          alt={"ProTec Logo"}
+          src={
+            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/hero.png"
+          }
+          className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-screen-lg"
+        />
+      </div>
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Shop By Category

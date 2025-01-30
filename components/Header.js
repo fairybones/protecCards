@@ -221,7 +221,16 @@ export default function Header() {
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
               </button>
 
-              <div className="ml-4 flex lg:ml-0">{/* INSERT LOGO */}</div>
+              <div className="ml-4 flex lg:ml-0 items-center justify-center">
+                {/* INSERT LOGO */}
+                <img
+                  alt={"ProTec Logo"}
+                  src={
+                    "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/smolLOGO.png"
+                  }
+                  className="h-6 w-auto sm:h-8 md:h-10 lg:h-12"
+                />
+              </div>
 
               <PopoverGroup className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">

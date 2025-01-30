@@ -1,4 +1,4 @@
-"use client"
+"use client";
 // https://tailwindui.com/components/ecommerce/components/store-navigation
 import React, { useContext } from "react";
 import Link from "next/link";
@@ -40,13 +40,15 @@ const navigation = {
         {
           name: "New Arrivals",
           href: "/new",
-          imageSrc: "../public/img/new.png",
+          imageSrc:
+            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/32.png",
           imageAlt: "spotlight new products",
         },
         {
           name: "Bestsellers",
           href: "/bestsellers",
-          imageSrc: "../public/img/best.png",
+          imageSrc:
+            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/35.png",
           imageAlt: "best selling products",
         },
       ],
@@ -54,23 +56,17 @@ const navigation = {
         {
           id: "trading",
           name: "Trading Cards",
-          items: [
-            { name: "Card Sleeves & Slabs", href: "/trading" },
-          ],
+          items: [{ name: "Card Sleeves & Slabs", href: "/trading" }],
         },
         {
           id: "grading",
           name: "Grading Accessories",
-          items: [
-            { name: "Grading Slabs", href: "/grading" },
-          ],
+          items: [{ name: "Grading Slabs", href: "/grading" }],
         },
         {
           id: "display",
           name: "Display Cases",
-          items: [
-            { name: "Card Stands", href: "/display" },
-          ],
+          items: [{ name: "Card Stands", href: "/display" }],
         },
       ],
     },
@@ -207,7 +203,7 @@ export default function Header() {
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-yellow-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Checkout coming soon!
-          <a href="/HomePage"></a>
+          <a href="https://protecaccessories.com"></a>
         </p>
         <nav
           aria-label="Top"

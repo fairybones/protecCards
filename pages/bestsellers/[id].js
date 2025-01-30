@@ -14,6 +14,7 @@ export default function ProductPreview() {
   const router = useRouter();
   const { id } = router.query;
   const supabase = useSupabase();
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,9 +74,13 @@ export default function ProductPreview() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Product Image on left */}
           <div className="w-full max-w-lg mx-auto lg:max-w-none lg:mx-0">
-            <img
-              alt={product.image_alt}
-              src={product.image_src}
+          <img
+              alt={product.image_alt || "Product Image"}
+              src={
+                product.image_src && product.image_src.startsWith("http")
+                  ? product.image_src
+                  : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${id}.png`
+              }
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>

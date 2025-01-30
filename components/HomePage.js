@@ -26,7 +26,7 @@ const categories = [
   {
     name: "Bestsellers",
     description: "Our bestselling products on Amazon & Ebay, now here!",
-    imageSrc: "https://placehold.co/400",
+    imageSrc: "public/img/best.png",
     imageAlt: "display collectibles",
     href: "/bestsellers",
   },

@@ -14,6 +14,7 @@ export default function ProductPreview() {
   const router = useRouter();
   const { id } = router.query;
   const supabase = useSupabase();
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,7 @@ export default function ProductPreview() {
         image: product.image_src,
         color: product.colorItem,
       });
-      setMessage("Item added to cart! 🎉")
+      setMessage("Item added to cart! 🎉");
     } catch (error) {
       console.error("Error adding item to cart:", error);
       setMessage("Failed to add item to cart. Please try again.");
@@ -74,8 +75,12 @@ export default function ProductPreview() {
           {/* Product Image on left */}
           <div className="w-full max-w-lg mx-auto lg:max-w-none lg:mx-0">
             <img
-              alt={product.image_alt}
-              src={product.image_src}
+              alt={product.image_alt || "Product Image"}
+              src={
+                product.image_src && product.image_src.startsWith("http")
+                  ? product.image_src
+                  : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${id}.png`
+              }
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
@@ -90,7 +95,9 @@ export default function ProductPreview() {
               {product.name}
             </h1>
             <p className="mt-4 text-2xl text-gray-500">${product.price}</p>
-            <p className="mt-4 text-md text-gray-700">{product.internal_size}</p>
+            <p className="mt-4 text-md text-gray-700">
+              {product.internal_size}
+            </p>
             {/* Color Options */}
             <div className="mt-6">
               <h3 className="text-sm mb-2 font-medium text-gray-700">Color</h3>
@@ -115,7 +122,8 @@ export default function ProductPreview() {
                           className={classNames(
                             colorItem.class,
                             "h-8 w-8 rounded-full border border-emerald-600",
-                            selectedColor === colorItem && "border-2 bg-gray-300"
+                            selectedColor === colorItem &&
+                              "border-2 bg-gray-300"
                           )}
                         />
                         <span className="mt-1 text-xs text-gray-700">
@@ -133,12 +141,17 @@ export default function ProductPreview() {
             <div className="mt-6">
               {Array.isArray(product.description) ? (
                 product.description.map((descriptionItem, index) => (
-                  <div key={index} className="mx-auto mb-2 flex items-start space-x-2">
+                  <div
+                    key={index}
+                    className="mx-auto mb-2 flex items-start space-x-2"
+                  >
                     <StarIcon
                       className="h-5 w-5 text-emerald-800 flex-shrink-0"
                       aria-hidden="true"
                     />
-                    <p className="text-base mb-2 text-gray-700">{descriptionItem}</p>
+                    <p className="text-base mb-2 text-gray-700">
+                      {descriptionItem}
+                    </p>
                   </div>
                 ))
               ) : (
@@ -153,7 +166,9 @@ export default function ProductPreview() {
               Add to Cart
             </button>
             {message && (
-              <p className="mt-4 text-sm font-medium text-gray-700">{message}</p>
+              <p className="mt-4 text-sm font-medium text-gray-700">
+                {message}
+              </p>
             )}
           </div>
         </div>

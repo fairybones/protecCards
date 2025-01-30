@@ -14,6 +14,7 @@ export default function ProductPreview() {
   const router = useRouter();
   const { id } = router.query;
   const supabase = useSupabase();
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,16 +74,20 @@ export default function ProductPreview() {
           {/* Product Image on left */}
           <div className="w-full max-w-lg mx-auto lg:max-w-none lg:mx-0">
             <img
-              alt={product.image_alt}
-              src={product.image_src}
+              alt={product.image_alt || "Product Image"}
+              src={
+                product.image_src && product.image_src.startsWith("http")
+                  ? product.image_src
+                  : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${id}.png`
+              }
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
           <div>
             <Link href="/new">
-              <label className="mb-5 text-base font-semibold text-emerald-800 hover:text-emerald-600">
+              <h1 className="mb-5 text-base font-semibold text-emerald-800 hover:text-emerald-600">
                 ← Back to New Arrivals
-              </label>
+              </h1>
             </Link>
             {/* Product Details on right */}
             <h1 className="mt-4 text-4xl font-bold text-gray-900">

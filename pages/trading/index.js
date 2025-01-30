@@ -1,14 +1,13 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSupabase } from "context/SupabaseContext";
 
 export default function TradingCards() {
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("bundle_size");
-
-  // console.log(supabase);
 
   useEffect(() => {
     const fetchTrading = async () => {
@@ -60,13 +59,17 @@ export default function TradingCards() {
         {products.length === 0 ? (
           <p className="mt-3">Loading products...</p>
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {products.map((product) => (
               <Link key={product.id} href={`/trading/${product.id}`}>
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                   <img
-                    alt={product.image_alt}
-                    src={product.image_src}
+                    alt={product.image_alt || "Product Image Unavailable"}
+                    src={
+                      product.image_src && product.image_src.startsWith("http")
+                        ? product.image_src
+                        : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${product.id}.png`
+                    }
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
                 </div>

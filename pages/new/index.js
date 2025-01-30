@@ -1,9 +1,10 @@
-// https://tailwindui.com/components/ecommerce/components/product-lists
+"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSupabase } from "../../context/SupabaseContext";
 
 export default function NewArrivals() {
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
   const supabase = useSupabase();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("price");
@@ -61,8 +62,12 @@ export default function NewArrivals() {
             <Link key={product.id} href={`/new/${product.id}`}>
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
-                  alt={product.image_alt}
-                  src={product.image_src}
+                  alt={product.image_alt || "Product Image Unavailable"}
+                  src={
+                    product.image_src && product.image_src.startsWith("http")
+                      ? product.image_src
+                      : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${product.id}.png`
+                  }
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
               </div>

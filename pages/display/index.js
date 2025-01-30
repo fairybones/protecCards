@@ -5,6 +5,7 @@ import { useSupabase } from "context/SupabaseContext";
 
 export default function Display() {
   const supabase = useSupabase();
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("bundle_size");
 
@@ -63,20 +64,25 @@ export default function Display() {
               <Link key={product.id} href={`/display/${product.id}`}>
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                   <img
-                    alt={product.image_alt}
-                    src={product.image_src}
+                    alt={product.image_alt || "Product Image Unavailable"}
+                    src={
+                      product.image_src && product.image_src.startsWith("http")
+                        ? product.image_src
+                        : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${product.id}.png`
+                    }
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
-                  </div>
-                  <div className="flex justify-between">
-                    <h3 className="mt-3 justify-start text-sm text-gray-700">
-                      {product.name}
-                    </h3>
-                    <p className="mt-3 px-4 text-sm font-medium text-gray-900">
-                      ${product.price}
-                    </p>
-                  </div>
-                  <button className="mt-2 px-3 py-2 text-white bg-gray-800 hover:bg-emerald-500 rounded-md"
+                </div>
+                <div className="flex justify-between">
+                  <h3 className="mt-3 justify-start text-sm text-gray-700">
+                    {product.name}
+                  </h3>
+                  <p className="mt-3 px-4 text-sm font-medium text-gray-900">
+                    ${product.price}
+                  </p>
+                </div>
+                <button
+                  className="mt-2 px-3 py-2 text-white bg-gray-800 hover:bg-emerald-500 rounded-md"
                   onClick={() => addToCart(product.id)}
                 >
                   Add to Bag

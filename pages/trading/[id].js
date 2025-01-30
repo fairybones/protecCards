@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { useSupabase } from "context/SupabaseContext";
 import { CartContext } from "context/CartContext";
-// import addToCart from "utils/addToCart";
 import Link from "next/link";
 
 function classNames(...classes) {
@@ -14,6 +13,7 @@ export default function ProductPreview() {
   const router = useRouter();
   const { id } = router.query;
   const supabase = useSupabase();
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
 
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -24,21 +24,27 @@ export default function ProductPreview() {
     if (!id) return;
 
     const fetchProduct = async () => {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .eq("id", id)
-        .single();
+      try {
+        const { data, error } = await supabase
+          .from("products")
+          .select("*")
+          .eq("id", id)
+          .single();
 
-      if (error) {
-        console.error(`Error fetching product ${id}:`, error);
-      } else {
-        setProduct(data);
-        setSelectedColor(data.color[0]);
+        if (error) {
+          console.error(`Error fetching product ${id}:`, error);
+        } else {
+          setProduct(data);
+          setSelectedColor(data.color[0]);
+        }
+      } catch (err) {
+        console.log("Unexpected error:", err);
+      } finally {
         setLoading(false);
       }
     };
     fetchProduct();
+    // console.log(product.image_src);
   }, [id, supabase]);
 
   if (loading) {
@@ -60,7 +66,7 @@ export default function ProductPreview() {
         image: product.image_src,
         color: product.colorItem,
       });
-      setMessage("Item added to cart! 🎉")
+      setMessage("Item added to cart! 🎉");
     } catch (error) {
       console.error("Error adding item to cart:", error);
       setMessage("Failed to add item to cart. Please try again.");
@@ -74,8 +80,12 @@ export default function ProductPreview() {
           {/* Images */}
           <div className="w-full max-w-lg mx-auto lg:max-w-none lg:mx-0">
             <img
-              alt={product.image_alt}
-              src={product.image_src}
+              alt={product.image_alt || "Product Image"}
+              src={
+                product.image_src && product.image_src.startsWith("http")
+                  ? product.image_src
+                  : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${id}.png`
+              }
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
@@ -160,7 +170,9 @@ export default function ProductPreview() {
               Add to Cart
             </button>
             {message && (
-              <p className="mt-4 text-sm font-medium text-gray-700">{message}</p>
+              <p className="mt-4 text-sm font-medium text-gray-700">
+                {message}
+              </p>
             )}
           </div>
         </div>

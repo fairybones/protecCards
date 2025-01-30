@@ -32,7 +32,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 const navigation = {
-  // UPDATE HREF
   categories: [
     {
       id: "shop",
@@ -41,13 +40,13 @@ const navigation = {
         {
           name: "New Arrivals",
           href: "/new",
-          imageSrc: "https://placehold.co/400",
+          imageSrc: "../public/img/new.png",
           imageAlt: "spotlight new products",
         },
         {
           name: "Bestsellers",
           href: "/bestsellers",
-          imageSrc: "https://placehold.co/400",
+          imageSrc: "../public/img/best.png",
           imageAlt: "best selling products",
         },
       ],
@@ -207,7 +206,8 @@ export default function Header() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-yellow-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Ooo exciting offer!
+          Checkout coming soon!
+          <a href="/HomePage"></a>
         </p>
         <nav
           aria-label="Top"

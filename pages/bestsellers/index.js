@@ -5,6 +5,7 @@ import { useSupabase } from "context/SupabaseContext";
 
 export default function Bestsellers() {
   const supabase = useSupabase();
+  const SUPABASE_URL = "https://lqgkaiftunbbvlkylfga.supabase.co";
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("newest");
 
@@ -62,11 +63,15 @@ export default function Bestsellers() {
             {products.map((product) => (
               <Link key={product.id} href={`/bestsellers/${product.id}`}>
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                  <img
-                    alt={product.image_alt}
-                    src={product.image_src}
-                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                  />
+                <img
+                  alt={product.image_alt || "Product Image Unavailable"}
+                  src={
+                    product.image_src && product.image_src.startsWith("http")
+                      ? product.image_src
+                      : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${product.id}.png`
+                  }
+                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                />
                 </div>
                 <div className="flex justify-between">
                   <h3 className="mt-3 justify-start text-sm text-gray-700">

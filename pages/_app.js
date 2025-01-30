@@ -8,12 +8,14 @@ import { useEffect, useState } from "react";
 import "@styles/globals.css";
 
 export default function App({ Component, pageProps }) {
-  console.log(supabase);
+  // console.log(supabase);
   const [fetchError, setFetchError] = useState(null);
   const [products, setProducts] = useState(null);
+  const [photos, setPhotos] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
+      // fetch products & product-photos
       const { data, error } = await supabase.from("products").select("*");
 
       if (error) {
@@ -30,6 +32,30 @@ export default function App({ Component, pageProps }) {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const { data, error } = await supabase.storage.from("product-photos").list("", { limit: 100 });
+
+        if (error) {
+          throw error;
+        }
+        // map files to public URLs
+        const photoUrls = data.map((file) => supabase.storage.from("product-photos").getPublicUrl(file.name).data.publicUrl);
+
+        console.log(photoUrls);
+
+        setPhotos(photoUrls);
+        setFetchError(null);
+      } catch (error) {
+        setFetchError("An error occurred fetching product photos from the database.");
+        setPhotos([]);
+        console.log(error);
+      }
+    };
+    fetchPhotos();
+  }, []);
+
   return (
     <div>
       <Head>
@@ -40,7 +66,7 @@ export default function App({ Component, pageProps }) {
         <GlobalProvider>
         <Header />
         <main>
-          <Component {...pageProps} />
+          <Component {...pageProps} products={products} photos={photos}/>
           {fetchError && <p>{fetchError}</p>}
         </main>
         </GlobalProvider>

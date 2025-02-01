@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "context/CartContext";
 import Link from "next/link";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "stripe";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY

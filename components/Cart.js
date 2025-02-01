@@ -7,6 +7,28 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
+const handleCheckout = async (cart) => {
+  const res = await fetch("/api/checkout_sessions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cartItems: cart }),
+  });
+  if (!res.ok) {
+    const errorData = await res.json();
+    console.error("Checkout session failed:", errorData);
+    return;
+  }
+  const data = await res.json();
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    console.error("Checkout error:", error);
+  }
+  // const { sessionId } = await res.json();
+  // const stripe = await stripePromise;
+  // stripe.redirectToCheckout({ sessionId });
+};
+
 const Cart = () => {
   const { addItemToCart, deleteItemFromCart, cart } = useContext(CartContext);
   const [customerCart, setCustomerCart] = useState(null);
@@ -19,36 +41,6 @@ const Cart = () => {
   if (!customerCart) {
     return <p>Loading...</p>;
   }
-
-  // useEffect(() => {
-  //   const query = new URLSearchParams(window.location.search);
-  //   if (query.get("success")) {
-  //     console.log("Order placed! You will recieve an email confirmation.");
-  //   }
-
-  //   if (query.get("canceled")) {
-  //     console.log("Order canceled -- you will be redirected to home now.");
-  //   }
-  // }, []);
-
-  const handleCheckout = async (cart) => {
-    const res = await fetch("/api/checkout_sessions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cartItems: cart }),
-    });
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.error("Checkout session failed:", errorData);
-      return;
-    }
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      console.error("Checkout error:", error);
-    }
-  };
 
   const increaseQty = (cartItem) => {
     const newQty = cartItem?.quantity + 1;
@@ -177,42 +169,39 @@ const Cart = () => {
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">
                     Order Summary
                   </h3>
-
-                    <ul className="text-gray-700 space-y-2">
-                      <li className="flex justify-between mb-1">
-                        <span>Subtotal:</span>
-                        <span className="font-semibold">${subtotal}</span>
-                      </li>
-                      <li className="flex justify-between mb-1">
-                        <span>Total Units:</span>
-                        <span className="text-emerald-700">
-                          {customerCart?.cartItems?.reduce(
-                            (acc, item) => acc + item.quantity,
-                            0
-                          )}
-                        </span>
-                      </li>
-                      <li className="flex justify-between mb-1">
-                        <span>Estimated Tax:</span>
-                        <span className="font-semibold">${taxAmount}</span>
-                      </li>
-                      <li className="flex justify-between text-lg font-semibold mb-1">
-                        <span>Total:</span>
-                        <span>${total}</span>
-                      </li>
-                    </ul>
-                    <p className="text-xs text-gray-700 mt-2 mb-1">
-                      *Shipping calculated at checkout.
-                    </p>
-                    <button
-                      className="w-full mt-4 bg-emerald-600 text-white py-2 rounded-lg hover:bg-emerald-700 transition"
-                      type="submit"
-                      role="link"
-                      onClick={() => handleCheckout(customerCart?.cartItems)}
-                      disabled={customerCart?.cartItems?.length === 0}
-                    >
-                      Proceed to Checkout
-                    </button>
+                  <ul className="text-gray-700 space-y-2">
+                    <li className="flex justify-between mb-1">
+                      <span>Subtotal:</span>
+                      <span className="font-semibold">${subtotal}</span>
+                    </li>
+                    <li className="flex justify-between mb-1">
+                      <span>Total Units:</span>
+                      <span className="text-emerald-700">
+                        {customerCart?.cartItems?.reduce(
+                          (acc, item) => acc + item.quantity,
+                          0
+                        )}
+                      </span>
+                    </li>
+                    <li className="flex justify-between mb-1">
+                      <span>Estimated Tax:</span>
+                      <span className="font-semibold">${taxAmount}</span>
+                    </li>
+                    <li className="flex justify-between text-lg font-semibold mb-1">
+                      <span>Total:</span>
+                      <span>${total}</span>
+                    </li>
+                  </ul>
+                  <p className="text-xs text-gray-700 mt-2 mb-1">
+                    *Shipping calculated at checkout.
+                  </p>
+                  <button
+                    className="w-full mt-4 bg-emerald-600 text-white py-2 rounded-lg hover:bg-emerald-700 transition"
+                    onClick={() => handleCheckout(customerCart?.cartItems)}
+                    disabled={customerCart?.cartItems?.length === 0}
+                  >
+                    Proceed to Checkout
+                  </button>
                   {cart?.cartItems?.length === 0 && (
                     <div className="text-center py-10">
                       <h2 className="text-2xl font-semibold mb-4">

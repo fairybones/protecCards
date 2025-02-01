@@ -10,6 +10,10 @@ export default async function handler(req, res) {
       const { cartItems } = req.body;
       console.log(cartItems);
 
+      if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
+        return res.status(400).json({ error: "Your cart is empty!" });
+      }
+
       const line_items = cartItems.map((item) => ({
         price_data: {
           currency: "usd",
@@ -25,14 +29,15 @@ export default async function handler(req, res) {
         payment_method_types: ["card"],
         line_items,
         mode: "payment",
-        success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-        // success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success`,
-        cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cart`,
+        // success_url: `${req.headers.origin}/?success=true`,
         // cancel_url: `${req.headers.origin}/?canceled=true`,
+        success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success`,
+        cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cart`,
         automatic_tax: { enabled: true },
       });
-      res.status(200).json({ sessionId: session.id });
-      // res.redirect(303, session.url);
+    //   res.status(200).json({ sessionId: session.id });
+    //   res.redirect(303, session.url);
+    res.status(200).json({ url: session.url });
     } catch (err) {
         console.error("Stripe Checkout error:", err);
       res.status(err.statusCode || 500).json(err.message);

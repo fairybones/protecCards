@@ -43,8 +43,6 @@ export default function App({ Component, pageProps }) {
         // map files to public URLs
         const photoUrls = data.map((file) => supabase.storage.from("product-photos").getPublicUrl(file.name).data.publicUrl);
 
-        console.log(photoUrls);
-
         setPhotos(photoUrls);
         setFetchError(null);
       } catch (error) {

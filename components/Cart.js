@@ -1,11 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "context/CartContext";
 import Link from "next/link";
-import { loadStripe } from "stripe";
-
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
 
 const handleCheckout = async (cart) => {
   const res = await fetch("/api/checkout_sessions", {

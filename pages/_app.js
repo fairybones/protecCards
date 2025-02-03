@@ -6,6 +6,8 @@ import Header from "@components/Header";
 import Footer from "@components/Footer";
 import { useEffect, useState } from "react";
 import "@styles/globals.css";
+import { CartProvider } from "context/CartContext";
+import Cart from "@components/Cart";
 
 export default function App({ Component, pageProps }) {
   // console.log(supabase);
@@ -56,6 +58,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <div>
+      <CartProvider>
       <Head>
         <title>Protec Accessories</title>
         <link rel="icon" href="/favicon.ico" />
@@ -63,6 +66,7 @@ export default function App({ Component, pageProps }) {
       <SupabaseProvider client={supabase}>
         <GlobalProvider>
         <Header />
+        <Cart />
         <main>
           <Component {...pageProps} products={products} photos={photos}/>
           {fetchError && <p>{fetchError}</p>}
@@ -70,6 +74,7 @@ export default function App({ Component, pageProps }) {
         </GlobalProvider>
       </SupabaseProvider>
       <Footer />
+      </CartProvider>
     </div>
   );
 }

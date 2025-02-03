@@ -113,7 +113,7 @@ export default function Header() {
                   {navigation.categories.map((category) => (
                     <Tab
                       key={category.name}
-                      className="flex-1 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-base font-medium text-gray-900 data-[selected]:border-emerald-600 data-[selected]:text-emerald-600"
+                      className="flex-1 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-base font-medium text-gray-900 data-[selected]:border-yellow-500 data-[selected]:text-yellow-600"
                     >
                       {category.name}
                     </Tab>

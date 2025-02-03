@@ -6,7 +6,7 @@ const categories = [
     name: "Trading Cards",
     description: "Pokemon, Magic, Sports, & More!",
     imageSrc:
-      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/34.png",
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/18.png",
     imageAlt: "slabs and sleeves for protecting trading cards",
     href: "/trading",
   },
@@ -14,7 +14,7 @@ const categories = [
     name: "Grading",
     description: "Professional supplies for grading cards.",
     imageSrc:
-      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/34.png",
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/11.png",
     imageAlt: "professional labels and slabs for graded cards",
     href: "/grading",
   },
@@ -22,7 +22,7 @@ const categories = [
     name: "Display Cards",
     description: "Card stands and holders for displaying any trading card.",
     imageSrc:
-      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/32.png",
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/2.png",
     imageAlt: "display trading cards",
     href: "/display",
   },
@@ -30,7 +30,7 @@ const categories = [
     name: "Bestsellers",
     description: "Our bestselling products on Amazon & Ebay, now here!",
     imageSrc:
-      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/35.png",
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/33.png",
     imageAlt: "display collectibles",
     href: "/bestsellers",
   },
@@ -44,7 +44,7 @@ export default function Home() {
         <img
           alt={"ProTec Logo"}
           src={
-            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/hero.png"
+            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/goldLOGO.jpg"
           }
           className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-screen-lg"
         />

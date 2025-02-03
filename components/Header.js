@@ -41,14 +41,14 @@ const navigation = {
           name: "New Arrivals",
           href: "/new",
           imageSrc:
-            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/32.png",
+            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/32.png",
           imageAlt: "spotlight new products",
         },
         {
           name: "Bestsellers",
           href: "/bestsellers",
           imageSrc:
-            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/35.png",
+            "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/33.png",
           imageAlt: "best selling products",
         },
       ],
@@ -221,7 +221,7 @@ export default function Header() {
               </button>
 
               <div className="ml-4 flex lg:ml-0 items-center justify-center">
-                {/* INSERT LOGO */}
+              <a href="/">
                 <img
                   alt={"ProTec Logo"}
                   src={
@@ -229,6 +229,7 @@ export default function Header() {
                   }
                   className="h-6 w-auto sm:h-8 md:h-10 lg:h-12"
                 />
+               </a>
               </div>
 
               <PopoverGroup className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">

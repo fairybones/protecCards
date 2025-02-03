@@ -29,8 +29,7 @@ export default async function handler(req, res) {
         cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cart`,
         automatic_tax: { enabled: true },
       });
-      // res.status(200).json({ sessionId: session.id });
-      // res.redirect(303, session.url);
+      const sessionId = session.id;
       res.status(200).json({ url: session.url });
     } catch (err) {
         console.error("Stripe Checkout error:", err);

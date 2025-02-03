@@ -68,7 +68,7 @@ export default function Bestsellers() {
                   src={
                     product.image_src && product.image_src.startsWith("http")
                       ? product.image_src
-                      : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${product.id}.png`
+                      : `${SUPABASE_URL}/storage/v1/object/public/product-pix/${product.id}.png`
                   }
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />

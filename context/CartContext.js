@@ -1,14 +1,11 @@
 "use client";
 import { createContext, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 export const CartContext = createContext();
 
 // provider to wrap app
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-
-  const router = useRouter;
 
   useEffect(() => {
     setCartToState();

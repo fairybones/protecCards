@@ -37,13 +37,13 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const { data, error } = await supabase.storage.from("product-photos").list("", { limit: 100 });
+        const { data, error } = await supabase.storage.from("product-pix").list("", { limit: 100 });
 
         if (error) {
           throw error;
         }
         // map files to public URLs
-        const photoUrls = data.map((file) => supabase.storage.from("product-photos").getPublicUrl(file.name).data.publicUrl);
+        const photoUrls = data.map((file) => supabase.storage.from("product-pix").getPublicUrl(file.name).data.publicUrl);
 
         setPhotos(photoUrls);
         setFetchError(null);

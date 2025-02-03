@@ -79,7 +79,7 @@ export default function ProductPreview() {
               src={
                 product.image_src && product.image_src.startsWith("http")
                   ? product.image_src
-                  : `${SUPABASE_URL}/storage/v1/object/public/product-photos/${id}.png`
+                  : `${SUPABASE_URL}/storage/v1/object/public/product-pix/${id}.png`
               }
               className="w-full h-auto rounded-lg shadow-lg"
             />

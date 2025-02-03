@@ -74,7 +74,7 @@ const Cart = () => {
       <img
         alt={"ProTec Logo"}
         src={
-          "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/hero.png"
+          "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/hero.png"
         }
         className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-screen-lg"
       />

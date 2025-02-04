@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
   };
   const addItemToCart = async ({
     product,
-    // id,
+    id,
     name,
     price,
     bundle_size,
@@ -35,7 +35,7 @@ export const CartProvider = ({ children }) => {
   }) => {
     const item = {
       product,
-      // id,
+      id,
       name,
       price,
       bundle_size,

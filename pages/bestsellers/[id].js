@@ -59,7 +59,7 @@ export default function ProductPreview() {
         price: product.price,
         bundle_size: product.bundle_size,
         image: product.image_src,
-        color: product.colorItem,
+        color: product.selectedColor,
       });
       setMessage("Item added to cart! 🎉")
     } catch (error) {

@@ -50,7 +50,7 @@ export const CartProvider = ({ children }) => {
 
     if (isItemExist) {
       newCartItems = cart?.cartItems?.map((i) =>
-        i.product === isItemExist.product ? item : i
+        i.product === isItemExist.product ? { ...i, quantity: i.quantity + quantity } : i
       );
     } else {
       newCartItems = [...(cart?.cartItems || []), item];
@@ -60,7 +60,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const deleteItemFromCart = (id) => {
-    const newCartItems = cart?.cartItems?.filter((i) => i.product !== id);
+    const newCartItems = cart?.cartItems?.filter((i) => i.id !== id);
 
     localStorage.setItem("cart", JSON.stringify({ cartItems: newCartItems }));
     setCartToState();

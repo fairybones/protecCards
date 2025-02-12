@@ -17,7 +17,7 @@ const handleCheckout = async (cart) => {
   if (data.url) {
     window.location.href = data.url;
   } else {
-    console.error("Checkout error:", error);
+    console.error("Checkout error:", data);
   }
   // const { sessionId } = await res.json();
   // const stripe = await stripePromise;
@@ -66,46 +66,47 @@ const Cart = () => {
   const total = (Number(subtotal) + Number(taxAmount)).toFixed(2);
 
   return (
-    <div class="font-sans md:max-w-4xl max-md:max-w-xl mx-auto bg-white py-4">
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="md:col-span-2 p-4 rounded-md">
-          <h2 class="text-2xl font-bold text-gray-800">
+    <div className="font-sans md:max-w-4xl max-md:max-w-xl mx-auto bg-white py-4">
+      <div className="grid md:grid-cols-3 gap-4">
+        <div className="md:col-span-2 p-4 rounded-md">
+          <h2 className="text-2xl font-bold text-gray-800">
             {customerCart?.cartItems.length || 0} Items in Cart!
           </h2>
-          <hr class="border-gray-300 mt-4 mb-8" />
+          <hr className="border-gray-300 mt-4 mb-8" />
 
-          <div class="space-y-4">
-            <div class="grid grid-cols-3 items-center gap-4">
-              <div class="col-span-2 flex items-center gap-4"></div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-3 items-center gap-4">
+              <div className="col-span-2 flex items-center gap-4"></div>
             </div>
             {customerCart?.cartItems?.map((cartItem) => (
-              <div class="grid grid-cols-3 items-center gap-4">
-                <div class="col-span-2 flex items-center gap-4">
-                  <div class="w-24 h-24 shrink-0 bg-white p-2 rounded-md">
+              <div className="grid grid-cols-3 items-center gap-4">
+                <div className="col-span-2 flex items-center gap-4">
+                  <div className="w-24 h-24 shrink-0 bg-white p-2 rounded-md">
                     <img
                       src={
                         cartItem.image ||
                         `${SUPABASE_URL}/storage/v1/object/public/product-pix/${cartItem.id}.png`
                       }
-                      class="w-full h-full object-contain"
+                      alt={`${cartItem.name}`}
+                      className="w-full h-full object-contain"
                     />
                   </div>
 
                   <div>
-                    <h3 class="text-base font-bold text-gray-800">
+                    <h3 className="text-base font-bold text-gray-800">
                       {cartItem.name}
                     </h3>
 
-                    <div class="flex items-center gap-x-6 mt-4">
-                      <div class="relative group">
-                        <button
+                    <div className="flex items-center gap-x-6 mt-4">
+                      <div className="relative group">
+                        {/* <button
                           type="button"
-                          class="flex items-center px-2.5 py-1.5 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
+                          className="flex items-center px-2.5 py-1.5 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
                         >
                           STYLE
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-2.5 fill-gray-500 inline ml-2.5"
+                            className="w-2.5 fill-gray-500 inline ml-2.5"
                             viewBox="0 0 24 24"
                           >
                             <path
@@ -116,23 +117,33 @@ const Cart = () => {
                             />
                           </svg>
                         </button>
-
-                        <ul class="group-hover:block hidden absolute rounded-md min-w-[80px] shadow-lg bg-white z-[1000]">
-                          <li class="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
+{Array.isArray(cartItem.color) && cartItem.color.length > 0 ? (
+  <ul className="group-hover:block hidden absolute rounded-md min-w-[80px] shadow-lg bg-white z-[1000]">
+    {cartItem.color.map((colorItem, index) => (
+      <li key={index} className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">{colorItem}</li>
+    ))}
+  </ul>
+) : (
+  <ul className="group-hover:block hidden absolute rounded-md min-w-[80px] shadow-lg bg-white z-[1000]">
+    <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">OS</li>
+  </ul>
+)} */}
+                        {/* <ul className="group-hover:block hidden absolute rounded-md min-w-[80px] shadow-lg bg-white z-[1000]">
+                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
                             SM
                           </li>
-                          <li class="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
+                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
                             MD
                           </li>
-                          <li class="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
+                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
                             XL
                           </li>
-                          <li class="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
+                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
                             XXL
                           </li>
-                        </ul>
+                        </ul> */}
                         <button
-                          class="text-xs text-red-500 cursor-pointer mt-1"
+                          className="text-xs text-red-500 cursor-pointer mt-1"
                           onClick={() => deleteItemFromCart(cartItem)}
                         >
                           Remove
@@ -143,11 +154,11 @@ const Cart = () => {
                         <button
                           type="button"
                           onClick={() => decreaseQty(cartItem)}
-                          class="flex items-center justify-center h-8 w-8 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
+                          className="flex items-center justify-center h-8 w-8 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-2.5 fill-current"
+                            className="w-2.5 fill-current"
                             viewBox="0 0 124 124"
                           >
                             <path
@@ -156,17 +167,17 @@ const Cart = () => {
                             ></path>
                           </svg>
                         </button>
-                        <span class="h-8 flex items-center justify-center text-sm font-medium px-2">
+                        <span className="h-8 flex items-center justify-center text-sm font-medium px-2">
                           {cartItem.quantity}
                         </span>
                         <button
                           type="button"
                           onClick={() => increaseQty(cartItem)}
-                          class="flex items-center justify-center h-8 w-8 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
+                          className="flex items-center justify-center h-8 w-8 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-2.5 fill-current"
+                            className="w-2.5 fill-current"
                             viewBox="0 0 42 42"
                           >
                             <path
@@ -179,8 +190,8 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-                <div class="ml-auto">
-                  <h4 class="text-base font-bold text-gray-800 ml-auto">
+                <div className="ml-auto">
+                  <h4 className="text-base font-bold text-gray-800 ml-auto">
                     ${cartItem.price}
                   </h4>
                 </div>
@@ -188,56 +199,56 @@ const Cart = () => {
             ))}
           </div>
         </div>
-        <div class="rounded-md p-4 md:sticky top-0">
-          <div class="flex border border-emerald-600 overflow-hidden rounded-md">
+        <div className="rounded-md p-4 md:sticky top-0">
+          <div className="flex border border-emerald-600 overflow-hidden rounded-md">
             <input
               type="email"
               placeholder="Promo code"
-              class="w-full outline-none bg-white text-gray-600 text-sm px-4 py-2.5"
+              className="w-full outline-none bg-white text-gray-600 text-sm px-4 py-2.5"
             />
             <button
               type="button"
-              class="flex items-center justify-center font-semibold tracking-wide bg-yellow-600 hover:bg-yellow-500 px-4 text-sm text-white"
+              className="flex items-center justify-center font-semibold tracking-wide bg-yellow-600 hover:bg-yellow-500 px-4 text-sm text-white"
             >
               Apply
             </button>
           </div>
           {/* ORDER SUMMARY */}
-          <ul class="text-gray-800 mt-8 space-y-4">
-            <li class="flex flex-wrap gap-4 text-base">
-              Subtotal <span class="ml-auto">${subtotal}</span>
+          <ul className="text-gray-800 mt-8 space-y-4">
+            <li className="flex flex-wrap gap-4 text-base">
+              Subtotal <span className="ml-auto">${subtotal}</span>
             </li>
-            <li class="flex flex-wrap gap-4 text-base">
+            <li className="flex flex-wrap gap-4 text-base">
               Total Units{" "}
-              <span class="ml-auto">
+              <span className="ml-auto">
                 {customerCart?.cartItems?.reduce(
                   (acc, item) => acc + item.quantity,
                   0
                 )}
               </span>
             </li>
-            <li class="flex flex-wrap gap-4 text-base">
-              Estimated Tax <span class="ml-auto">${taxAmount}</span>
+            <li className="flex flex-wrap gap-4 text-base">
+              Estimated Tax <span className="ml-auto">${taxAmount}</span>
             </li>
-            <li class="flex flex-wrap gap-4 text-base font-bold">
-              Total <span class="ml-auto">${total}</span>
+            <li className="flex flex-wrap gap-4 text-base font-bold">
+              Total <span className="ml-auto">${total}</span>
             </li>
           </ul>
 
-          <div class="mt-8 space-y-2">
+          <div className="mt-8 space-y-2">
             <p className="text-xs text-gray-700 mb-2">
               * Shipping is calculated at checkout.
             </p>
             <button
               type="button"
-              class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-yellow-600 hover:bg-yellow-500 text-white rounded-md"
+              className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-yellow-600 hover:bg-yellow-500 text-white rounded-md"
               onClick={() => handleCheckout(customerCart?.cartItems)}
               disabled={customerCart?.cartItems?.length === 0}
             >
               Checkout
             </button>
             {customerCart?.cartItems?.length === 0 && (
-              <Link href="/" className="text-md hover:underline items-center mt-2">Continue Shopping{" "}</Link>
+              <Link href="/" className="text-md hover:underline items-center text-emerald-700">Continue Shopping{" "}</Link>
             )}
           </div>
         </div>

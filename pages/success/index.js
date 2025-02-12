@@ -1,6 +1,132 @@
-"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 export default function OrderSuccess() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const { session_id } = router.query;
+
+    if (session_id) {
+      fetch("/api/fulfill_order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session_id }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("order fulfillment res:", data);
+          if (data.success && data.order) {
+            sendToShipStation(data.order, data.orderItems);
+          }
+        })
+        .catch((error) => console.error("Error in fulfillment API:", error));
+    }
+  }, [router.query]);
+  //   try {
+  //     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+
+  //     if (!stripeSecretKey) {
+  //       throw new Error("Stripe key missing in env.")
+  //     }
+
+  //     const stripe = require("stripe")(stripeSecretKey);
+
+  //     const checkoutSession = await stripe.checkout.sessions.retrieve(
+  //       sessionId,
+  //       {
+  //         expand: ["line_items"],
+  //       }
+  //     );
+
+  //     const { data: existingOrder, error: fetchError } = await supabase
+  //       .from("orders")
+  //       .select("id, status")
+  //       .eq("session_id", sessionId)
+  //       .single();
+  //       if (fetchError) console.error("Error fetching an existing order:", fetchError);
+
+  //     if (existingOrder && existingOrder.status === "fulfilled") {
+  //       console.log("order already processed.");
+  //       return;
+  //     }
+
+  //     if (checkoutSession.payment_status === "paid") {
+  //       const totalAmount = checkoutSession.amount_total / 100;
+  //       const customerDetails = checkoutSession.customer_details;
+
+  //       const { data: newOrder, error: orderError } = await supabase
+  //         .from("orders")
+  //         .insert([
+  //           {
+  //             session_id: sessionId,
+  //             customer_email: customerDetails.email,
+  //             customer_name: customerDetails.name,
+  //             shipping_address: JSON.stringify(customerDetails.address),
+  //             total_amount: totalAmount,
+  //             status: "awaiting_shipment",
+  //           },
+  //         ])
+  //         .select()
+  //         .single();
+
+  //       if (orderError) {
+  //         console.error("Error processing order:", orderError);
+  //         return;
+  //       }
+
+  //       const orderId = newOrder.id;
+
+  //       const lineItems = checkoutSession.line_items.data.map((item) => ({
+  //         order_id: orderId,
+  //         product_id: item.price.product,
+  //         sku: item.price.id,
+  //         product_name: item.product.name,
+  //         quantity: item.quantity,
+  //         price_each: item.price.unit_amount / 100,
+  //         subtotal: (item.quantity * item.price.unit_amount) / 100,
+  //       }));
+
+  //       const { error: itemsError } = await supabase
+  //         .from("order_items")
+  //         .insert(lineItems);
+
+  //       if (itemsError) {
+  //         console.error("Error inserting order items:", itemsError);
+  //         return;
+  //       }
+
+  //       await sendToShipStation(newOrder, lineItems);
+
+  //       console.log("Order fulfilled and sent to ShipStation!", orderId);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error in fulfillOrder:", error);
+  //   }
+  // };
+
+  const sendToShipStation = async (order, orderItems) => {
+    try {
+      const res = await fetch("/api/shipstation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ order, orderItems }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send order data to ShipStation.");
+      }
+      console.log("Order sent to ShipStation successfully");
+    } catch (error) {
+      console.error("Error sending order details to ShipStation:", error);
+    }
+  };
   return (
     <div className="bg-gray">
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -31,7 +157,7 @@ export default function OrderSuccess() {
               Thank you for your order!
             </h1>
             <p className="mt-10 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-              You will recieve an email confirmation.
+              You will receive an email confirmation.
             </p>
           </div>
         </div>

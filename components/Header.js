@@ -225,7 +225,7 @@ export default function Header() {
                 <img
                   alt={"ProTec Logo"}
                   src={
-                    "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/smolLOGO.png"
+                    "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/smolLOGO.png"
                   }
                   className="h-6 w-auto sm:h-8 md:h-10 lg:h-12"
                 />

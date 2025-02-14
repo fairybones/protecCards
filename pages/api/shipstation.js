@@ -10,8 +10,11 @@ export default async function handler(req, res) {
   const credentials = Buffer.from(base64Credentials, "base64").toString(
     "utf-8"
   );
+  console.log("Auth Header:", req.headers.authorization);
+  console.log("All Req Headers:", req.headers);
   const [username, password] = credentials.split(":");
-
+  console.log("ShipStation Username:", process.env.SHIPSTATION_USERNAME);
+  console.log("ShipStation Password:", process.env.SHIPSTATION_PASSWORD);
   if (
     username !== process.env.SHIPSTATION_USERNAME ||
     password !== process.env.SHIPSTATION_PASSWORD
@@ -28,6 +31,8 @@ export default async function handler(req, res) {
   }
 
   async function handleGet(req, res) {
+    console.log("ShipStation GET");
+    
     const { data: orders, error } = await supabase
       .from("orders")
       .select(
@@ -95,33 +100,38 @@ export default async function handler(req, res) {
                     Country: order.country
                 },
                 Items: {
-                    Item: order.items.map(item => ({
-                        SKU: item.sku,
-                        Name: item.name,
-                        Quantity: item.quantity,
-                        UnitPrice: item.price
-                    }))
-                }
+                  Item: Array.isArray(order.order_items) ? order.order_items.map(item => ({
+                      SKU: item.sku,
+                      Name: item.product?.name || "",
+                      Quantity: item.quantity,
+                      UnitPrice: item.price_each.toFixed(2)
+                  })) : []
+              }
             }))
         }
     });
 
   res.setHeader("Content-Type", "text/xml");
   res.status(200).send(xmlData);
-
-  await supabase.from("orders").update({ shipped: true }).eq("shipped", false);
   }
 
   async function handlePost(req, res) {
+    console.log("ShipStation POST");
+
     const { order_number, tracking_number, carrier, status } = req.body;
 
     if (!order_number || !tracking_number || !carrier || !status) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
+    const validStatus = ["Shipped", "Delivered", "Cancelled"];
+    if (!validStatus.includes(status)) {
+      return res.status(400).json({ error: "Invalid status" });
+    }
+
     const { error } = await supabase
       .from("orders")
-      .update({ tracking_number, carrier, status })
+      .update({ tracking_number, carrier, status, shipped: status === "Shipped" })
       .eq("order_number", order_number);
 
     if (error) return res.status(500).json({ error: error.message });

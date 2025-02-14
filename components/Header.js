@@ -202,7 +202,7 @@ export default function Header() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-yellow-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Checkout coming soon!
+          * IN TEST MODE *
         </p>
         <nav
           aria-label="Top"

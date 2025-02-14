@@ -22,7 +22,7 @@ const categories = [
     name: "Display Cards",
     description: "Card stands and holders for displaying any trading card.",
     imageSrc:
-      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/2.png",
+      "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/30.png",
     imageAlt: "display trading cards",
     href: "/display",
   },

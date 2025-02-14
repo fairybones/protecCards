@@ -50,7 +50,7 @@ export const CartProvider = ({ children }) => {
 
     if (isItemExist) {
       newCartItems = cart?.cartItems?.map((i) =>
-        i.product === isItemExist.product ? { ...i, quantity: i.quantity + quantity } : i
+        i.product === isItemExist.product ? item : i
       );
     } else {
       newCartItems = [...(cart?.cartItems || []), item];

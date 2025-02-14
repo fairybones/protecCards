@@ -9,9 +9,7 @@ const handleCheckout = async (cart) => {
     body: JSON.stringify({ cartItems: cart }),
   });
   if (!res.ok) {
-    const errorData = await res.json();
-    console.error("Checkout session failed:", errorData);
-    return;
+    throw new Error("Checkout session failed")
   }
   const data = await res.json();
   if (data.url) {
@@ -39,19 +37,15 @@ const Cart = () => {
   }
 
   const increaseQty = (cartItem) => {
-    const newQty = cartItem?.quantity + 1;
-    const item = { ...cartItem, quantity: newQty };
-
-    addItemToCart(item);
+    const updatedItem = { ...cartItem, quantity: cartItem.quantity + 1 };
+    addItemToCart(updatedItem);
   };
   const decreaseQty = (cartItem) => {
     if (cartItem?.quantity > 1) {
-      const newQty = cartItem?.quantity - 1;
-      const item = { ...cartItem, quantity: newQty };
-
-      addItemToCart(item);
+      const updatedItem = { ...cartItem, quantity: cartItem.quantity - 1 };
+    addItemToCart(updatedItem);
     } else {
-      deleteItemFromCart(cartItem.product);
+      deleteItemFromCart(cartItem.id);
     }
   };
   const findSubtotal = (cartItems) => {
@@ -79,7 +73,7 @@ const Cart = () => {
               <div className="col-span-2 flex items-center gap-4"></div>
             </div>
             {customerCart?.cartItems?.map((cartItem) => (
-              <div className="grid grid-cols-3 items-center gap-4">
+              <div key={cartItem.id} className="grid grid-cols-3 items-center gap-4">
                 <div className="col-span-2 flex items-center gap-4">
                   <div className="w-24 h-24 shrink-0 bg-white p-2 rounded-md">
                     <img
@@ -99,52 +93,10 @@ const Cart = () => {
 
                     <div className="flex items-center gap-x-6 mt-4">
                       <div className="relative group">
-                        {/* <button
-                          type="button"
-                          className="flex items-center px-2.5 py-1.5 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
-                        >
-                          STYLE
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-2.5 fill-gray-500 inline ml-2.5"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
-                              clip-rule="evenodd"
-                              data-original="#000000"
-                            />
-                          </svg>
-                        </button>
-{Array.isArray(cartItem.color) && cartItem.color.length > 0 ? (
-  <ul className="group-hover:block hidden absolute rounded-md min-w-[80px] shadow-lg bg-white z-[1000]">
-    {cartItem.color.map((colorItem, index) => (
-      <li key={index} className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">{colorItem}</li>
-    ))}
-  </ul>
-) : (
-  <ul className="group-hover:block hidden absolute rounded-md min-w-[80px] shadow-lg bg-white z-[1000]">
-    <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">OS</li>
-  </ul>
-)} */}
-                        {/* <ul className="group-hover:block hidden absolute rounded-md min-w-[80px] shadow-lg bg-white z-[1000]">
-                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
-                            SM
-                          </li>
-                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
-                            MD
-                          </li>
-                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
-                            XL
-                          </li>
-                          <li className="py-2 px-4 hover:bg-gray-100 text-gray-800 text-xs cursor-pointer">
-                            XXL
-                          </li>
-                        </ul> */}
+      
                         <button
                           className="text-xs text-red-500 cursor-pointer mt-1"
-                          onClick={() => deleteItemFromCart(cartItem)}
+                          onClick={() => deleteItemFromCart(cartItem.id)}
                         >
                           Remove
                         </button>

@@ -202,7 +202,7 @@ export default function Header() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-yellow-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Checkout coming soon!
+          * IN TEST MODE *
         </p>
         <nav
           aria-label="Top"
@@ -225,7 +225,7 @@ export default function Header() {
                 <img
                   alt={"ProTec Logo"}
                   src={
-                    "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-photos/smolLOGO.png"
+                    "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/smolLOGO.png"
                   }
                   className="h-6 w-auto sm:h-8 md:h-10 lg:h-12"
                 />

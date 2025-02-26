@@ -13,11 +13,11 @@ export default async function handler(req, res) {
   console.log("Auth Header:", req.headers.authorization);
   console.log("All Req Headers:", req.headers);
   const [username, password] = credentials.split(":");
-  console.log("ShipStation Username:", process.env.SHIPSTATION_USERNAME);
-  console.log("ShipStation Password:", process.env.SHIPSTATION_PASSWORD);
+  console.log("ShipStation Username:", process.env.SHIPSTATION_API_KEY);
+  console.log("ShipStation Password:", process.env.SHIPSTATION_API_SECRET);
   if (
-    username !== process.env.SHIPSTATION_USERNAME ||
-    password !== process.env.SHIPSTATION_PASSWORD
+    username !== process.env.SHIPSTATION_API_KEY ||
+    password !== process.env.SHIPSTATION_API_SECRET
   ) {
     return res.status(401).json({ error: "Unauthorized" });
   }
@@ -39,41 +39,7 @@ export default async function handler(req, res) {
         `id, created_at, status, customer_name, customer_email, order_items (id, quantity, price_each, sku, product: products (name, price))`
       ).eq("shipped", false);
     if (error) return res.status(500).json({ error: error.message });
-  //   const xmlResponse = `
-  //   <?xml version="1.0" encoding="utf-8"?>
-  //   <Orders>
-  //       ${orders
-  //         .map(
-  //           (order) => `
-  //           <Order>
-  //               <OrderID>${order.id}</OrderID>
-  //               <OrderDate>${order.created_at}</OrderDate>
-  //               <OrderStatus>${order.status}</OrderStatus>
-  //               <Customer>
-  //                   <Name>${escapeXML(order.customer_name || "")}</Name>
-  //                   <Email>${escapeXML(order.customer_email || "")}</Email>
-  //               </Customer>
-  //               <Items>
-  //                   ${order.order_items
-  //                     .map(
-  //                       (item) => `
-  //                       <Item>
-  //                           <SKU>${item.sku || ""}</SKU>
-  //                           <Name>${escapeXML(item.products?.name || "")}</Name>
-  //                           <Quantity>${item.quantity}</Quantity>
-  //                           <UnitPrice>${item.price_each.toFixed(2)}</UnitPrice>
-  //                       </Item>
-  //                   `
-  //                     )
-  //                     .join("")}
-  //               </Items>
-  //           </Order>
-  //       `
-  //         )
-  //         .join("")}
-  //   </Orders>
-  // `;
-    
+ 
   const builder = new xml2js.Builder({ headless: true });
     const xmlData = builder.buildObject({
         Orders: {

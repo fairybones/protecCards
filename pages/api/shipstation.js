@@ -13,11 +13,11 @@ export default async function handler(req, res) {
   console.log("Auth Header:", req.headers.authorization);
   console.log("All Req Headers:", req.headers);
   const [username, password] = credentials.split(":");
-  console.log("ShipStation Username:", process.env.SHIPSTATION_API_KEY);
-  console.log("ShipStation Password:", process.env.SHIPSTATION_API_SECRET);
+  console.log("ShipStation Username:", process.env.SHIPSTATION_USERNAME);
+  console.log("ShipStation Password:", process.env.SHIPSTATION_PASSWORD);
   if (
-    username !== process.env.SHIPSTATION_API_KEY ||
-    password !== process.env.SHIPSTATION_API_SECRET
+    username !== process.env.SHIPSTATION_USERNAME ||
+    password !== process.env.SHIPSTATION_PASSWORD
   ) {
     return res.status(401).json({ error: "Unauthorized" });
   }

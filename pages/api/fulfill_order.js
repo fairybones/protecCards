@@ -9,7 +9,6 @@ const stripe = new Stripe(stripeSecretKey);
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
-    // process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
@@ -38,6 +37,7 @@ export default async function handler(req, res) {
             customer_name: checkoutSession.customer_details.name,
             shipping_address: JSON.stringify(checkoutSession.customer_details.address),
             total_amount: checkoutSession.amount_total / 100,
+            items: JSON.stringify(checkoutSession.line_items),
             status: "awaiting_shipment",
         },
     ]).select().single();

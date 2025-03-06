@@ -1,17 +1,14 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 export default function OrderSuccess() {
   const router = useRouter();
 
   useEffect(() => {
+    if (!router.isReady) return;
+
     const { session_id } = router.query;
+    if (!session_id) return;
 
     if (session_id) {
       fetch("/api/fulfill_order", {
@@ -29,87 +26,6 @@ export default function OrderSuccess() {
         .catch((error) => console.error("Error in fulfillment API:", error));
     }
   }, [router.query]);
-  //   try {
-  //     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-
-  //     if (!stripeSecretKey) {
-  //       throw new Error("Stripe key missing in env.")
-  //     }
-
-  //     const stripe = require("stripe")(stripeSecretKey);
-
-  //     const checkoutSession = await stripe.checkout.sessions.retrieve(
-  //       sessionId,
-  //       {
-  //         expand: ["line_items"],
-  //       }
-  //     );
-
-  //     const { data: existingOrder, error: fetchError } = await supabase
-  //       .from("orders")
-  //       .select("id, status")
-  //       .eq("session_id", sessionId)
-  //       .single();
-  //       if (fetchError) console.error("Error fetching an existing order:", fetchError);
-
-  //     if (existingOrder && existingOrder.status === "fulfilled") {
-  //       console.log("order already processed.");
-  //       return;
-  //     }
-
-  //     if (checkoutSession.payment_status === "paid") {
-  //       const totalAmount = checkoutSession.amount_total / 100;
-  //       const customerDetails = checkoutSession.customer_details;
-
-  //       const { data: newOrder, error: orderError } = await supabase
-  //         .from("orders")
-  //         .insert([
-  //           {
-  //             session_id: sessionId,
-  //             customer_email: customerDetails.email,
-  //             customer_name: customerDetails.name,
-  //             shipping_address: JSON.stringify(customerDetails.address),
-  //             total_amount: totalAmount,
-  //             status: "awaiting_shipment",
-  //           },
-  //         ])
-  //         .select()
-  //         .single();
-
-  //       if (orderError) {
-  //         console.error("Error processing order:", orderError);
-  //         return;
-  //       }
-
-  //       const orderId = newOrder.id;
-
-  //       const lineItems = checkoutSession.line_items.data.map((item) => ({
-  //         order_id: orderId,
-  //         product_id: item.price.product,
-  //         sku: item.price.id,
-  //         product_name: item.product.name,
-  //         quantity: item.quantity,
-  //         price_each: item.price.unit_amount / 100,
-  //         subtotal: (item.quantity * item.price.unit_amount) / 100,
-  //       }));
-
-  //       const { error: itemsError } = await supabase
-  //         .from("order_items")
-  //         .insert(lineItems);
-
-  //       if (itemsError) {
-  //         console.error("Error inserting order items:", itemsError);
-  //         return;
-  //       }
-
-  //       await sendToShipStation(newOrder, lineItems);
-
-  //       console.log("Order fulfilled and sent to ShipStation!", orderId);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error in fulfillOrder:", error);
-  //   }
-  // };
 
   const sendToShipStation = async (order, orderItems) => {
     try {
@@ -146,7 +62,7 @@ export default function OrderSuccess() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               Got questions?{" "}
-              <a href="/warranty" className="font-semibold text-indigo-600">
+              <a href="/warranty" className="font-semibold text-emerald-600">
                 <span aria-hidden="true" className="absolute inset-0" />
                 Contact us <span aria-hidden="true">&rarr;</span>
               </a>

@@ -2,7 +2,7 @@
 
 This is a [Next.js](https://nextjs.org/) v14 project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and set up to be instantly deployed to [Netlify](https://url.netlify.com/SyTBPVamO)!
 
-This project utilizes tailwind css for styling, a cloud database and automated order fulfillment. For questions or business inquires, please contact me via the form on my [website], (http://aeschalnat.netlify.app/info)
+This project utilizes tailwind css for styling, a cloud database and automated order fulfillment. For questions or business inquires, please contact me via the form on my [website](http://aeschalnat.netlify.app/info).
 
 ## Table of Contents:
 
@@ -13,7 +13,7 @@ This project utilizes tailwind css for styling, a cloud database and automated o
 
 ### Installation options
 
-The website is fully operational at https://protecaccessories.com
+The website is fully operational at https://protecaccessories.com.
 
 ## Testing
 

@@ -82,7 +82,7 @@ const Cart = () => {
                         `${SUPABASE_URL}/storage/v1/object/public/product-pix/${cartItem.id}.png`
                       }
                       alt={`${cartItem.name}`}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain text-xs mt-2"
                     />
                   </div>
 

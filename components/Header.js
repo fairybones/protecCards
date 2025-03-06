@@ -35,7 +35,7 @@ const navigation = {
   categories: [
     {
       id: "shop",
-      name: "Shop",
+      name: "Shop All",
       featured: [
         {
           name: "New Arrivals",
@@ -72,7 +72,7 @@ const navigation = {
     },
   ],
   forms: [
-    { name: "Frequently Asked Questions", href: "/warranty" },
+    { name: "FAQ", href: "/warranty" },
     { name: "Wholesale", href: "/wholesale" },
   ],
 };
@@ -225,7 +225,7 @@ export default function Header() {
                 <img
                   alt={"ProTec Logo"}
                   src={
-                    "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/smolLOGO.png"
+                    "https://lqgkaiftunbbvlkylfga.supabase.co/storage/v1/object/public/product-pix/goldLOGO.jpg"
                   }
                   className="h-6 w-auto sm:h-8 md:h-10 lg:h-12"
                 />
